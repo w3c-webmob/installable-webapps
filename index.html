@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Use Cases and Requirements for Installable Web Apps</title>
+    <meta charset='utf-8'>
+    <script src='http://www.w3.org/Tools/respec/respec-w3c-common'
+            async class='remove'></script>
+    <script class='remove'>
+      var respecConfig = {
+          // specification status (e.g. WD, LCWD, WG-NOTE, etc.). If in doubt use ED.
+          specStatus:           "unofficial",
+          
+          // the specification's short name, as in http://www.w3.org/TR/short-name/
+          shortName:            "reqs-installable-webapps",
+
+          // if your specification has a subtitle that goes below the main
+          // formal title, define it here
+          // subtitle   :  "an excellent document",
+
+          // if you wish the publication date to be other than the last modification, set this
+          // publishDate:  "2009-08-06",
+
+          // if the specification's copyright date is a range of years, specify
+          // the start date here:
+          // copyrightStart: "2005"
+
+          // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
+          // and its maturity status
+          // previousPublishDate:  "1977-03-15",
+          // previousMaturity:  "WD",
+
+          // if there a publicly available Editor's Draft, this is the link
+          // edDraftURI:           "http://berjon.com/",
+
+          // if this is a LCWD, uncomment and set the end of its review period
+          // lcEnd: "2009-08-05",
+
+          // editors, add as many as you like
+          // only "name" is required
+          editors:  [
+              {
+                  name:       "Marcos Cáceres"
+              ,   url:        "http://marcosc.com"
+              ,   mailto:     "w3c@marcosc.com"
+              ,   company:    "Mozilla"
+              ,   companyURL: "http://mozilla.com/"
+              },
+          ],
+          
+          // name of the WG
+          wg:           "Web and Mobile Interest Group (WebMob)",
+          
+          // URI of the public WG page
+          wgURI:        "http://www.w3.org/Mobile/IG/",
+          
+          // name (without the @w3c.org) of the public mailing to which comments are due
+          wgPublicList: "public-web-mobile",
+          
+          // URI of the patent status for this WG, for Rec-track documents
+          // !!!! IMPORTANT !!!!
+          // This is important for Rec-track documents, do not copy a patent URI from a random
+          // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
+          // Team Contact.
+          wgPatentURI:  "",
+          // !!!! IMPORTANT !!!! MAKE THE ABOVE BLINK IN YOUR HEAD
+      };
+    </script>
+    </head>
+    <body>
+<section id='abstract'>
+      <p>The Web platform currently lacks an interoperable means for web applications to be accessed and run as if they were ordinary &quot;native&quot; applications on a user's device. 
+    Having web applications appear amongst natively installed applications (e.g., on the home screen of a device) gives end-user's the perception that these web applications are &quot;installed&quot; on their system. Furthermore, having a degree of integration between these &quot;installed&quot; web applications and native applications means that operating systems can integrate these applications into facilities like the task switcher (further reducing the distinction between a native application and a web application). </p>
+      <p>This document outlines the use case and requirements that would allow users to &quot;install&quot; web applications. The use cases and requirements were gathered by examining the landscape of proprietary solutions, and, where possible, by gathering statistics about the prevalence and usage patterns of particular solutions used in the wild. </p>
+    </section>
+<section id='sotd'>
+      <p> This is a work in progress. </p>
+    </section>
+<section>
+      <h2>Installing a web application</h2>
+      <p> The concept of an installed web apps comprises of the following aspects:</p>
+      <dl>
+    <dt>Discoverability</dt>
+    <dd>The application informs the UA that it supports being installed.</dd>
+    <dt>Iconography</dt>
+    <dd>this includes graphical representations that represent the application in various context (primary of which is as icon amongst a list of installed applications).</dd>
+    <dt>Searchability</dt>
+    <dd>once installed, the application provides a means for a users to find the application by name. </dd>
+    orientation
+    <dt>Self awareness</dt>
+    <dd>The applications informs scripts that it's running as installed.</dd>
+  </dl>
+    </section>
+<section>
+      <h2>What's the problem?</h2>
+      <p> To access a web application, users have traditionally   opened up a web browser, typed a URL or a search query into a search box, and had the browser navigate to the application they wanted. Alternatively, a user may have "bookmarked" within a Web browser a set of web documents or web applications they commonly access. Some browsers will intelligently monitor user's browsing habits to work out which are the most common web sites the user accesses - and then  present visual links to those in the browser. 
+    Depending on the browser, user-defined and automatically-gleaned bookmarks will appear as a list of document titles or file names in either a drop-down menu, &quot;speed-dial&quot; cells, a toolbar, and/or a dedicated application window or tab. All these &quot;bookmarks&quot; are illustrated below. </p>
+      <figure> <img src="images/desktop_bookmarking.png">
+    <figcaption>There are at  least 6 different ways to access bookmarks in a desktop-based browser. Some of those bookmarks are derived dynamically by monitoring user's browsing habbits, such as the most visited sites and "speed dial" entries the user sees when they open a new tab. </figcaption>
+  </figure>
+      <p>Unfortunately, the bookmarking facilities provided by browsers do not commonly integrate into an operating system's application menu. This means that web applications and "native" applications are accessed and treated as completely different ways. This happens even though the utility of a web application might be analagous to that provided by an application installed locally on the user's device (e.g., a game, an office productivity suite, and so on). </p>
+      <p>On mobile devices, the interaction model has traditionally been the same as the one described above: there has historically been a clear distiction between opening a native application and accessing an application on the Web. Mobile browsers have thus had to add similar bookmarking capabilities as those found in desktop-class browsers. </p>
+      <figure> <img src="images/mobile_bookmarks.jpg" alt="">
+    <figcaption>
+          <p>The bookmarking facilities provided by mobile browsers closely resamble those of desktop-browsers. 
+        
+        From left to right, Safari on iOS, Android 4.3 stock browser, Chrome on iOS, and FirefoxOS's default browser. </p>
+        </figcaption>
+  </figure>
+      <h3>Two home screens</h3>
+      <p>By replicating the tiled the home screen of a device, browsers end up essentially creating a second &quot;home screen&quot;: the first being the one managed by the OS, and the second being the one default tab in the browser. This is most evidently seen on iOS. </p>
+      <figure> <img src="images/ios_default_tab.png" alt="">
+    <figcaption> Safari's default tab view uses icons derived from websites to effectively create a second "home screen" from which web sites can be accessed by users. </figcaption>
+  </figure>
+      <p>Although very useful for some services, there are some web applications that would benefit from being directly available from the primary home screen. Also relegating web applicaitons to this second home screen means that applications are treated as second-class citizens: in the sense that in order to access these application, a user must first launch the right browser, and then press the icon for the application they wish to load.
+  <p>Developers would like their web applications to be immidiately available to users, without them needing to launch a seperate application (a web browser) and having to type a URL. And application may be found through browsing the web, but once "installed", it should be functionally indistiguishable from a native application.</p>
+      <p>Users would like to have more immidiate access to web application, particularly on mobile devices where having to type URLs is cumbersome. </p>
+      Both developers and users would like these applications to be indistiguishable as possible from native applications. That is, once an application is "installed" it integrates seemlessly into user experience afforded by the operating system. </section>
+<section class='appendix'>
+      <h2>Acknowledgements</h2>
+      <p>...</p>
+    </section>
+</body>
+</html>
