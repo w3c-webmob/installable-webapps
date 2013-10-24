@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    <title>Use Cases and Requirements for Installable Web Apps</title>
+  <head>
+    <title>
+      Use Cases and Requirements for Installable Web Apps
+    </title>
     <meta charset='utf-8'>
-    <script src='http://www.w3.org/Tools/respec/respec-w3c-common'
-            async class='remove'></script>
+    <script src='http://www.w3.org/Tools/respec/respec-w3c-common' async=""
+    class='remove'>
+</script>
     <script class='remove'>
-      var respecConfig = {
+var respecConfig = {
           // specification status (e.g. WD, LCWD, WG-NOTE, etc.). If in doubt use ED.
           specStatus:           "unofficial",
           
@@ -65,59 +68,436 @@
           // !!!! IMPORTANT !!!! MAKE THE ABOVE BLINK IN YOUR HEAD
       };
     </script>
-    </head>
-    <body>
-<section id='abstract'>
-      <p>The Web platform currently lacks an interoperable means for web applications to be accessed and run as if they were ordinary &quot;native&quot; applications on a user's device. 
-    Having web applications appear amongst natively installed applications (e.g., on the home screen of a device) gives end-user's the perception that these web applications are &quot;installed&quot; on their system. Furthermore, having a degree of integration between these &quot;installed&quot; web applications and native applications means that operating systems can integrate these applications into facilities like the task switcher (further reducing the distinction between a native application and a web application). </p>
-      <p>This document outlines the use case and requirements that would allow users to &quot;install&quot; web applications. The use cases and requirements were gathered by examining the landscape of proprietary solutions, and, where possible, by gathering statistics about the prevalence and usage patterns of particular solutions used in the wild. </p>
+  </head>
+  <body>
+    <section id='abstract'>
+      <p>
+        This document outlines the use cases and requirements that would allow
+        users to "install" web applications. The use cases and requirements
+        were gathered by examining the landscape of proprietary solutions, and,
+        where possible, by gathering statistics about the prevalence and usage
+        patterns of particular solutions used in the wild. Proprietary
+        solutions that integrate web applications into the underlying operating
+        system have been used "in the wild" for a few years now, so
+        consolidation towards a standardized solution could potentially benefit
+        users, developers, and browser vendors.
+      </p>
     </section>
-<section id='sotd'>
-      <p> This is a work in progress. </p>
+    <section id='sotd'>
+      <p>
+        This is a work in progress. All contributions welcome.
+      </p>
     </section>
-<section>
-      <h2>Installing a web application</h2>
-      <p> The concept of an installed web apps comprises of the following aspects:</p>
-      <dl>
-    <dt>Discoverability</dt>
-    <dd>The application informs the UA that it supports being installed.</dd>
-    <dt>Iconography</dt>
-    <dd>this includes graphical representations that represent the application in various context (primary of which is as icon amongst a list of installed applications).</dd>
-    <dt>Searchability</dt>
-    <dd>once installed, the application provides a means for a users to find the application by name. </dd>
-    orientation
-    <dt>Self awareness</dt>
-    <dd>The applications informs scripts that it's running as installed.</dd>
-  </dl>
-    </section>
-<section>
-      <h2>What's the problem?</h2>
-      <p> To access a web application, users have traditionally   opened up a web browser, typed a URL or a search query into a search box, and had the browser navigate to the application they wanted. Alternatively, a user may have "bookmarked" within a Web browser a set of web documents or web applications they commonly access. Some browsers will intelligently monitor user's browsing habits to work out which are the most common web sites the user accesses - and then  present visual links to those in the browser. 
-    Depending on the browser, user-defined and automatically-gleaned bookmarks will appear as a list of document titles or file names in either a drop-down menu, &quot;speed-dial&quot; cells, a toolbar, and/or a dedicated application window or tab. All these &quot;bookmarks&quot; are illustrated below. </p>
-      <figure> <img src="images/desktop_bookmarking.png">
-    <figcaption>There are at  least 6 different ways to access bookmarks in a desktop-based browser. Some of those bookmarks are derived dynamically by monitoring user's browsing habbits, such as the most visited sites and "speed dial" entries the user sees when they open a new tab. </figcaption>
-  </figure>
-      <p>Unfortunately, the bookmarking facilities provided by browsers do not commonly integrate into an operating system's application menu. This means that web applications and "native" applications are accessed and treated as completely different ways. This happens even though the utility of a web application might be analagous to that provided by an application installed locally on the user's device (e.g., a game, an office productivity suite, and so on). </p>
-      <p>On mobile devices, the interaction model has traditionally been the same as the one described above: there has historically been a clear distiction between opening a native application and accessing an application on the Web. Mobile browsers have thus had to add similar bookmarking capabilities as those found in desktop-class browsers. </p>
-      <figure> <img src="images/mobile_bookmarks.jpg" alt="">
-    <figcaption>
-          <p>The bookmarking facilities provided by mobile browsers closely resamble those of desktop-browsers. 
-        
-        From left to right, Safari on iOS, Android 4.3 stock browser, Chrome on iOS, and FirefoxOS's default browser. </p>
+    <section>
+      <h2>
+        Towards installable web applications
+      </h2>
+      <p>
+        To launch native applications on either a desktop-class machine or a
+        mobile device, users are generally presented with icons and
+        corresponding labels that represent the applications installed on their
+        system.
+      </p>
+      <figure>
+        <img src="images/nativeapp_icons.jpg" alt="">
+        <figcaption>
+          Some application icons of Android 4.3, Windows Phone 7, and MacOS
+          Mavericks.
         </figcaption>
-  </figure>
-      <h3>Two home screens</h3>
-      <p>By replicating the tiled the home screen of a device, browsers end up essentially creating a second &quot;home screen&quot;: the first being the one managed by the OS, and the second being the one default tab in the browser. This is most evidently seen on iOS. </p>
-      <figure> <img src="images/ios_default_tab.png" alt="">
-    <figcaption> Safari's default tab view uses icons derived from websites to effectively create a second "home screen" from which web sites can be accessed by users. </figcaption>
-  </figure>
-      <p>Although very useful for some services, there are some web applications that would benefit from being directly available from the primary home screen. Also relegating web applicaitons to this second home screen means that applications are treated as second-class citizens: in the sense that in order to access these application, a user must first launch the right browser, and then press the icon for the application they wish to load.
-  <p>Developers would like their web applications to be immidiately available to users, without them needing to launch a seperate application (a web browser) and having to type a URL. And application may be found through browsing the web, but once "installed", it should be functionally indistiguishable from a native application.</p>
-      <p>Users would like to have more immidiate access to web application, particularly on mobile devices where having to type URLs is cumbersome. </p>
-      Both developers and users would like these applications to be indistiguishable as possible from native applications. That is, once an application is "installed" it integrates seemlessly into user experience afforded by the operating system. </section>
-<section class='appendix'>
-      <h2>Acknowledgements</h2>
-      <p>...</p>
+      </figure>
+      <section>
+        <h3>
+          Bookmarks
+        </h3>
+        <p>
+          Conversely, to access a web application, users traditionally opened
+          up a web browser, typed-in a URL or a search query into a search box,
+          and had the browser navigate to the web application they wanted.
+          Alternatively, a user may have "bookmarked" within a Web browser a
+          set of web documents or web applications they commonly access.
+        </p>
+        <p>
+          More recently, browsers have started to monitor user's browsing
+          habits to intelligently deduce which are the most common web sites
+          the user likes to visit (i.e., a type of automatic bookmarking). The
+          browser will then intelligently present visual links to those sites.
+          Depending on the browser, user-defined and automatically-gleaned
+          bookmarks will appear as a list of document titles or file names in
+          either a drop-down menu, "speed-dial" cells, a toolbar, and/or a
+          dedicated application window or tab. All these bookmark types are
+          illustrated below.
+        </p>
+        <figure>
+          <img src="images/desktop_bookmarking.png" alt="">
+          <figcaption>
+            <p>
+              There are at least 6 different ways to access bookmarks in a
+              desktop-based browser. Some of those bookmarks are derived
+              dynamically by monitoring user's browsing habits, such as the
+              most visited sites and "speed dial" entries the user sees when
+              they open a new tab.
+            </p>
+          </figcaption>
+        </figure>
+      </section>
+      <section>
+        <h3>
+          Bookmarking on mobile browsers
+        </h3>
+        <p>
+          On mobile devices, the interaction model has traditionally been the
+          same as the one described above: there has historically been a clear
+          distinction between opening a native application and accessing a Web
+          application. That is, the user needs to first locate the Web browser
+          they want to use, launch it, and then either type-in a URL or use a
+          bookmark to access a Web application. Web browsers that run on mobile
+          operating systems have thus had to add similar bookmarking facilities
+          as those found in desktop-class browsers, as shown below.
+        </p>
+        <figure>
+          <img src="images/mobile_bookmarks.jpg" alt=
+          "From left to right, the bookmarking facilities of Safari on iOS, Android 4.3 stock browser, Chrome on iOS, and Firefox OS's default browser.">
+          <figcaption>
+            <p>
+              The bookmarking facilities of mobile browsers closely resemble
+              those of desktop-browsers - providing both a traditional list of
+              bookmarks as well as a "speed dial" that can contain either
+              automatically gleaned bookmarks or user-configured ones.
+            </p>
+          </figcaption>
+        </figure>
+        <p>
+          Having bookmarking facilities in mobile browsers helps reduce some of
+          the burden associated with having to type URLs. Particularly for
+          sites that the user visits regularly, it means that a web site can be
+          accessed by a single press.
+        </p>
+      </section>
+      <section>
+        <h3>
+          Limitations of bookmarking: multiple home screens
+        </h3>
+        <p>
+          Unfortunately, the bookmarking facilities of desktop and mobile
+          browsers do not integrate into an operating system's application
+          menu. This means that web applications and "native" applications are
+          treated as different things. This separation might make sense for
+          many kinds of web sites (e.g., static, informational ones that
+          provide little other ), but there is a range of applications that can
+          provide an experience that is analogous to that provided by an
+          application installed locally on the user's device (e.g., a game, an
+          office productivity suite, a currency converter or similar utility,
+          etc.).
+        </p>
+        <p>
+          As shown below, this has led at least one browser to attempt to
+          replicate the homescreen experience directly in the browser itself.
+        </p>
+        <figure>
+          <img src="images/ios_default_tab.png" alt=""> <img src=
+          "images/iOS_homescreen.png" alt="">
+          <figcaption>
+            In iOS 7's Safari web browser, the default tab view presents icons
+            derived from websites to effectively create a second homescreen -
+            image on the left. This can be clearly seen when contrasted with
+            the actual iOS 7 homescreen -image on the right. Google Chrome's
+            browser, although not shown here, does the same thing in iOS: it
+            presents bookmarked pages as a grid of icons.
+          </figcaption>
+        </figure>
+        <p>
+          Although this is a convenient way to access web sites, there are web
+          applications that would benefit from being directly available from
+          the primary home screen. Also relegating web applications to this
+          second homescreen means that web applications are treated as
+          "second-class citizens": in the sense that in order to access these
+          applications, a user must first launch the right browser (from
+          potentially a range of different browsers), and then press the icon
+          for the application they wish to load.
+        </p>
+      </section>
     </section>
-</body>
+    <section>
+      <h2>
+        Add to homescreen
+      </h2>
+      <p>
+        Ideally, web applications should be immediately available to users,
+        without them needing to launch a separate application (a web browser)
+        and having to type a URL. And application may be found through browsing
+        the web, but once "installed", it should be functionally
+        indistinguishable from a native application. Browser makers have long
+        acknowledged this as something users would want: iOS's Safari has had
+        the capability to add a website to the homescreen since early 2008
+        (version 1.1.3, shown in the figure below); Android's stock browser has
+        provided the capability to "add to homescreen" since at least 2009
+        (though the process of adding to website to the homescreen was
+        significantly more convoluted).
+      </p>
+      <figure>
+        <img src="images/early_addtohomescreen.jpg" alt="iOS 1.1.3">
+        <figcaption>
+          The ability to add a web site to the homescreen didn't automatically
+          make a web application look, feel, or integrate into the operating
+          system in the same way as native applications did. For instance,
+          originally in iOS, launching a web application that had been added to
+          the homescreen took the user back into Safari. It was only with the
+          release of iOS 2.2 in September 2008 that applications that had been
+          added to the home screen gained the capability to be displayed full
+          screen (doing away with Safari's chrome).
+        </figcaption>
+      </figure>
+      <h3>
+        From fancy bookmark to installed webapp
+      </h3>
+      <p>
+        What initially started as a way to simply add a link to a website from
+        iOS's homescreen, has incrementally evolved to diminish the functional
+        differences between a web application and a native application. This
+        has not happened on the OS level along, progress on the web platform,
+        such as the ability to make content available offiline, and native
+        intergration of form inputs, has assisted in diminishing these
+        differences. However, tighter integration between web applications and
+        the underlying operating system has meant that applications that end up
+        being added to the homescreen behave differently to those accessed
+        directly through the web browser. There are also areas where native
+        applications remain distinct, by having capabilities that are not
+        accessible to installed web applications. These areas are as follows:
+      </p>
+      <dl>
+        <dt>
+          Naming:
+        </dt>
+        <dd>
+          The ability for a user to find an application through its name(s).
+          Some OSs allow native applications to be found by using multiple
+          names. Web applications, because of HTML's origin as a
+          document-publishing format, have a "title" and these titles are
+          applied "per page" basis.
+        </dd>
+        <dt>
+          Iconography
+        </dt>
+        <dd>
+          The graphical representations that represent the application in
+          various context (primary of which is as icon amongst a list of
+          installed applications), but also in other contexts - such as
+          settings screen. Because of the various contexts that a native
+          application's icon can appear in an OS, native applications typically
+          need to provide a large range of icons at different sizes and, more
+          recently, specifically targetted at different device pixel densities.
+        </dd>
+        <dt>
+          &nbsp;
+        </dt>
+        <dt>
+          Orientation
+        </dt>
+        <dd>
+          Applications, such as games, require that they be started in a
+          particular orientation to function effectively. We applications are
+          generally designed using responsive web design techniques, which
+          eamsn
+        </dd>
+        <dt>
+          Self awareness
+        </dt>
+        <dd>
+          The applications is aware scripts that it was launced "standalone",
+          rathen than in the context of a Web browser. This differs from native
+          applications, which always run stand alone.
+        </dd>
+        <dt>
+          Start page:
+        </dt>
+        <dd>
+          As an web application can be added to the homescreen at any point the
+          user desires.
+        </dd>
+        <dt>
+          Security
+        </dt>
+        <dd>
+          Different cookie jar. Is it blank slate? are cookies copied over?
+          webSQL data?
+        </dd>
+        <dt>
+          Privacy:
+        </dt>
+        <dd>
+          Integration with privacy settings at the os level.
+        </dd>
+        <dt>
+          Navigation:
+        </dt>
+        <dd>
+          Can the page be navigated?
+        </dd>
+        <dt>
+          UI behavior:
+        </dt>
+        <dd>
+          Turning off things that can and can't be selected, etc.
+        </dd>
+      </dl>
+      <p>
+        The web platform still lacks a standardized means for a web application
+        to be "installed" and launched as if it were an ordinary native
+        application. Having the icons of web applications appear amongst
+        applications that the user considers native (e.g., those on the home
+        screen of a device) gives the perception to users that a web
+        application has been "installed" (even if the processes that go into
+        actually "installing" a web application differ from those of a native
+        application).
+      </p>
+      <p>
+        Because of this gap in the web platform, browser vendors, including
+        Google, Apple, and Mozilla, have implemented proprietary solutions that
+        allow users to add web applications to the homescreen. To achieve this,
+        developers use proprietary opt-in mechanisms to indicate to the browser
+        that the web application can work as a stand-alone application once
+        it's added to the homescreen. These opt-in mechanisms also provide
+        metadata (e.g., the icon) that allows applications to add the
+        application to the homescreen. Two examples of how a developer entices
+        users to add an application to the home screen are shown below.
+      </p>
+      <figure>
+        <img src="images/addtohomescreen.jpg" alt="The website, forecast.io">
+        <figcaption>
+          <p>
+            The figure shows web applications that asks the end-user to add the
+            web application to the homescreen. On the left <a href=
+            "http://forecast.io">forecast.io</a> and <a href=
+            "http://m.espn.go.com">ESPN</a> on the right.
+          </p>
+        </figcaption>
+      </figure>
+      <p>
+        When users add a web application to the home screen and the web
+        application is launched, the OS can automatically integrate the web
+        application into facilities like the task switcher. As can be seen in
+        the figure below, this makes the distinction between a native
+        application and a web application negligible from an OS-integration
+        perspective.
+      </p>
+      <figure>
+        <img src="images/ios_integration.jpg" alt="">
+        <figcaption>
+          <p>
+            The figure shows how the <cite><a href=
+            "http://forecase.io">Forecast</a></cite> web application integrates
+            with iOS 7's task switcher. Note also the web application's launch
+            icon is indistinguishable from those of other applications.
+          </p>
+        </figcaption>
+      </figure>
+      <p>
+        The act of adding an application to the home screen serves as a queue
+        to alter the security policy of an application. For example, in iOS,
+        and application that has been added to the home screen will no longer
+        share cookies, localStorage, IDB, etc. with Safari. The application
+        will also reset all its API permissions, so, for example, any
+        previously granted permission to access location services is forgotten
+        once the application is added to the homescreen - the end-user will
+        need to re-enable such permission again after the application is
+        launched from the homescreen. However, by adding the application to the
+        home screen, the application gains its own independent privacy settings
+        in iOS's system menu. This is shown in the figure below.
+      </p>
+      <figure>
+        <img src="images/ios_privacy.png" alt="">
+      </figure>
+    </section>
+    <section>
+      <h2>
+        Bookmarking vs add to home Screen
+      </h2>
+      <p>
+        &nbsp;
+      </p>
+      <table width="200" border="1">
+        <tr>
+          <th scope="col">
+            Action
+          </th>
+          <th scope="col">
+            iOS
+          </th>
+          <th scope="col">
+            Android
+          </th>
+          <th scope="col">
+            Firefox OS
+          </th>
+        </tr>
+        <tr>
+          <td>
+            Trigger
+          </td>
+          <td>
+            <img src="images/addtohomescreen/trigger_action_ios.png">
+          </td>
+          <td>
+            <img src="images/addtohomescreen/trigger_android.png" alt="">
+          </td>
+          <td>
+            <img src="images/addtohomescreen/trigger_fxos.png" alt="">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Add to home screen
+          </td>
+          <td>
+            <img src="images/addtohomescreen/addtohome_ios.png">
+          </td>
+          <td>
+            <img src="images/addtohomescreen/addtohome_android.png" alt="">
+          </td>
+          <td>
+            <img src="images/addtohomescreen/addtohome_fxos.png" alt="">
+          </td>
+        </tr>
+        <tr>
+          <td>
+            Bookmark
+          </td>
+          <td>
+            <img src="images/addtohomescreen/bookmark_io.png" alt="">
+          </td>
+          <td>
+            <img src="images/addtohomescreen/bookmark_android.png" alt="">
+          </td>
+          <td>
+            <img src="images/addtohomescreen/bookmark_fxos.png" alt="">
+          </td>
+        </tr>
+      </table>
+      <p>
+        &nbsp;
+      </p>
+    </section>
+    <section>
+      <h2>
+        Bookmarks
+      </h2>
+    </section>
+    <section>
+      <h2>
+        Installing a web application
+      </h2>
+      <p>
+        The concept of an installed web apps comprises of the following
+        aspects:
+      </p>
+    </section>
+    <section class='appendix'>
+      <h2>
+        Acknowledgements
+      </h2>
+      <p>
+        ...
+      </p>
+    </section>
+  </body>
 </html>
