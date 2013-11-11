@@ -111,7 +111,7 @@ var respecConfig = {
         </h3>
         <p>
           Conversely, to access a web application, users traditionally opened
-          up a web browser, typed-in a URL or a search query into a search box,
+          up a web browser, typed a URL or a search query into a search box,
           and had the browser navigate to the web application they wanted.
           Alternatively, a user may have "bookmarked" within a Web browser a
           set of web documents or web applications they commonly access.
@@ -120,7 +120,7 @@ var respecConfig = {
           More recently, browsers have started to monitor user's browsing
           habits to intelligently deduce which are the most common web sites
           the user likes to visit (i.e., a type of automatic bookmarking). The
-          browser will then intelligently present visual links to those sites.
+          browser will then present visual links to those sites.
           Depending on the browser, user-defined and automatically-gleaned
           bookmarks will appear as a list of document titles or file names in
           either a drop-down menu, "speed-dial" cells, a toolbar, and/or a
@@ -131,7 +131,7 @@ var respecConfig = {
           <img src="images/desktop_bookmarking.png" alt="">
           <figcaption>
             <p>
-              There are at least 6 different ways to access bookmarks in a
+              There are at least six different ways to access bookmarks in a
               desktop-based browser. Some of those bookmarks are derived
               dynamically by monitoring user's browsing habits, such as the
               most visited sites and "speed dial" entries the user sees when
@@ -198,7 +198,7 @@ var respecConfig = {
           "images/iOS_homescreen.png" alt="">
           <figcaption>
             In iOS 7's Safari web browser, the default tab view presents icons
-            derived from websites to effectively create a second homescreen -
+            derived from websites to  create what is, in effect, a second homescreen -
             image on the left. This can be clearly seen when contrasted with
             the actual iOS 7 homescreen -image on the right. Google Chrome's
             browser, although not shown here, does the same thing in iOS: it
@@ -252,14 +252,13 @@ var respecConfig = {
       </h3>
       <p>
         What initially started as a way to simply add a link to a website from
-        iOS's homescreen, has incrementally evolved to diminish the functional
+        iOS's homescreen has incrementally evolved to diminish the functional
         differences between a web application and a native application. This
-        has not happened on the OS level along, progress on the web platform,
-        such as the ability to make content available offiline, and native
+        has not happened on the OS level alone; progress on the web platform, 
+        such as the ability to make content available offiline and native
         intergration of form inputs, has assisted in diminishing these
         differences. However, tighter integration between web applications and
-        the underlying operating system has meant that applications that end up
-        being added to the homescreen behave differently to those accessed
+        the underlying operating system has meant that applications that are added to the homescreen behave differently to those accessed
         directly through the web browser. There are also areas where native
         applications remain distinct, by having capabilities that are not
         accessible to installed web applications. These areas are as follows:
@@ -273,14 +272,14 @@ var respecConfig = {
           Some OSs allow native applications to be found by using multiple
           names. Web applications, because of HTML's origin as a
           document-publishing format, have a "title" and these titles are
-          applied "per page" basis.
+          applied "per page" basis using HTML's &lt;title&gt; element.
         </dd>
         <dt>
           Iconography
         </dt>
         <dd>
           The graphical representations that represent the application in
-          various context (primary of which is as icon amongst a list of
+          various contexts (primarily, an icon that functions as an application's unique identifier amongst a list of
           installed applications), but also in other contexts - such as
           settings screen. Because of the various contexts that a native
           application's icon can appear in an OS, native applications typically
@@ -297,14 +296,14 @@ var respecConfig = {
           Applications, such as games, require that they be started in a
           particular orientation to function effectively. We applications are
           generally designed using responsive web design techniques, which
-          eamsn
+          means [???]
         </dd>
         <dt>
           Self awareness
         </dt>
         <dd>
-          The applications is aware scripts that it was launced "standalone",
-          rathen than in the context of a Web browser. This differs from native
+          The applications is aware through script that it was launched "standalone",
+          rather than in the context of a Web browser. This differs from native
           applications, which always run stand alone.
         </dd>
         <dt>
@@ -325,13 +324,13 @@ var respecConfig = {
           Privacy:
         </dt>
         <dd>
-          Integration with privacy settings at the os level.
+          Integration with privacy settings at the OS level.
         </dd>
         <dt>
           Navigation:
         </dt>
         <dd>
-          Can the page be navigated?
+          Can the page be navigated? [what does this mean?]
         </dd>
         <dt>
           UI behavior:
@@ -342,7 +341,7 @@ var respecConfig = {
       </dl>
       <p>
         The web platform still lacks a standardized means for a web application
-        to be "installed" and launched as if it were an ordinary native
+        to be "installed" and launched as if it were an native
         application. Having the icons of web applications appear amongst
         applications that the user considers native (e.g., those on the home
         screen of a device) gives the perception to users that a web
@@ -392,7 +391,7 @@ var respecConfig = {
         </figcaption>
       </figure>
       <p>
-        The act of adding an application to the home screen serves as a queue
+        The act of adding an application to the home screen serves as a cue
         to alter the security policy of an application. For example, in iOS,
         and application that has been added to the home screen will no longer
         share cookies, localStorage, IDB, etc. with Safari. The application
@@ -487,7 +486,7 @@ var respecConfig = {
         Installing a web application
       </h2>
       <p>
-        The concept of an installed web apps comprises of the following
+        The concept of an installed web apps comprises the following
         aspects:
       </p>
     </section>
