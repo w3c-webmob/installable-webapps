@@ -5,69 +5,11 @@
       Use Cases and Requirements for Installable Web Apps
     </title>
     <meta charset='utf-8'>
-    <script src='http://www.w3.org/Tools/respec/respec-w3c-common' async=""
+    <script src='http://www.w3.org/Tools/respec/respec-w3c-common' async
     class='remove'>
 </script>
-    <script class='remove'>
-var respecConfig = {
-          // specification status (e.g. WD, LCWD, WG-NOTE, etc.). If in doubt use ED.
-          specStatus:           "unofficial",
-          
-          // the specification's short name, as in http://www.w3.org/TR/short-name/
-          shortName:            "reqs-installable-webapps",
-
-          // if your specification has a subtitle that goes below the main
-          // formal title, define it here
-          // subtitle   :  "an excellent document",
-
-          // if you wish the publication date to be other than the last modification, set this
-          // publishDate:  "2009-08-06",
-
-          // if the specification's copyright date is a range of years, specify
-          // the start date here:
-          // copyrightStart: "2005"
-
-          // if there is a previously published draft, uncomment this and set its YYYY-MM-DD date
-          // and its maturity status
-          // previousPublishDate:  "1977-03-15",
-          // previousMaturity:  "WD",
-
-          // if there a publicly available Editor's Draft, this is the link
-          // edDraftURI:           "http://berjon.com/",
-
-          // if this is a LCWD, uncomment and set the end of its review period
-          // lcEnd: "2009-08-05",
-
-          // editors, add as many as you like
-          // only "name" is required
-          editors:  [
-              {
-                  name:       "Marcos Cáceres"
-              ,   url:        "http://marcosc.com"
-              ,   mailto:     "w3c@marcosc.com"
-              ,   company:    "Mozilla"
-              ,   companyURL: "http://mozilla.com/"
-              },
-          ],
-          
-          // name of the WG
-          wg:           "Web and Mobile Interest Group (WebMob)",
-          
-          // URI of the public WG page
-          wgURI:        "http://www.w3.org/Mobile/IG/",
-          
-          // name (without the @w3c.org) of the public mailing to which comments are due
-          wgPublicList: "public-web-mobile",
-          
-          // URI of the patent status for this WG, for Rec-track documents
-          // !!!! IMPORTANT !!!!
-          // This is important for Rec-track documents, do not copy a patent URI from a random
-          // document unless you know what you're doing. If in doubt ask your friendly neighbourhood
-          // Team Contact.
-          wgPatentURI:  "",
-          // !!!! IMPORTANT !!!! MAKE THE ABOVE BLINK IN YOUR HEAD
-      };
-    </script>
+    <script src="respectConfig.js" class='remove'>
+   </script>
   </head>
   <body>
     <section id='abstract'>
@@ -85,7 +27,9 @@ var respecConfig = {
     </section>
     <section id='sotd'>
       <p>
-        This is a work in progress. All contributions welcome.
+        This document is undergoing heavy revision. If you have any thoughts or
+        comments about the content, please either join the aformetioned list or
+        file a bug on GitHub. All contributions welcome.
       </p>
     </section>
     <section>
@@ -120,12 +64,12 @@ var respecConfig = {
           More recently, browsers have started to monitor user's browsing
           habits to intelligently deduce which are the most common web sites
           the user likes to visit (i.e., a type of automatic bookmarking). The
-          browser will then present visual links to those sites.
-          Depending on the browser, user-defined and automatically-gleaned
-          bookmarks will appear as a list of document titles or file names in
-          either a drop-down menu, "speed-dial" cells, a toolbar, and/or a
-          dedicated application window or tab. All these bookmark types are
-          illustrated below.
+          browser will then present visual links to those sites. Depending on
+          the browser, user-defined and automatically-gleaned bookmarks will
+          appear as a list of document titles or file names in either a
+          drop-down menu, "speed-dial" cells, a toolbar, and/or a dedicated
+          application window or tab. All these bookmark types are illustrated
+          below.
         </p>
         <figure>
           <img src="images/desktop_bookmarking.png" alt="">
@@ -198,11 +142,11 @@ var respecConfig = {
           "images/iOS_homescreen.png" alt="">
           <figcaption>
             In iOS 7's Safari web browser, the default tab view presents icons
-            derived from websites to  create what is, in effect, a second homescreen -
-            image on the left. This can be clearly seen when contrasted with
-            the actual iOS 7 homescreen -image on the right. Google Chrome's
-            browser, although not shown here, does the same thing in iOS: it
-            presents bookmarked pages as a grid of icons.
+            derived from websites to create what is, in effect, a second
+            homescreen - image on the left. This can be clearly seen when
+            contrasted with the actual iOS 7 homescreen -image on the right.
+            Google Chrome's browser, although not shown here, does the same
+            thing in iOS: it presents bookmarked pages as a grid of icons.
           </figcaption>
         </figure>
         <p>
@@ -254,14 +198,15 @@ var respecConfig = {
         What initially started as a way to simply add a link to a website from
         iOS's homescreen has incrementally evolved to diminish the functional
         differences between a web application and a native application. This
-        has not happened on the OS level alone; progress on the web platform, 
+        has not happened on the OS level alone; progress on the web platform,
         such as the ability to make content available offiline and native
         intergration of form inputs, has assisted in diminishing these
         differences. However, tighter integration between web applications and
-        the underlying operating system has meant that applications that are added to the homescreen behave differently to those accessed
-        directly through the web browser. There are also areas where native
-        applications remain distinct, by having capabilities that are not
-        accessible to installed web applications. These areas are as follows:
+        the underlying operating system has meant that applications that are
+        added to the homescreen behave differently to those accessed directly
+        through the web browser. There are also areas where native applications
+        remain distinct, by having capabilities that are not accessible to
+        installed web applications. These areas are as follows:
       </p>
       <dl>
         <dt>
@@ -279,16 +224,14 @@ var respecConfig = {
         </dt>
         <dd>
           The graphical representations that represent the application in
-          various contexts (primarily, an icon that functions as an application's unique identifier amongst a list of
-          installed applications), but also in other contexts - such as
-          settings screen. Because of the various contexts that a native
-          application's icon can appear in an OS, native applications typically
-          need to provide a large range of icons at different sizes and, more
-          recently, specifically targetted at different device pixel densities.
+          various contexts (primarily, an icon that functions as an
+          application's unique identifier amongst a list of installed
+          applications), but also in other contexts - such as settings screen.
+          Because of the various contexts that a native application's icon can
+          appear in an OS, native applications typically need to provide a
+          large range of icons at different sizes and, more recently,
+          specifically targetted at different device pixel densities.
         </dd>
-        <dt>
-          &nbsp;
-        </dt>
         <dt>
           Orientation
         </dt>
@@ -302,9 +245,9 @@ var respecConfig = {
           Self awareness
         </dt>
         <dd>
-          The applications is aware through script that it was launched "standalone",
-          rather than in the context of a Web browser. This differs from native
-          applications, which always run stand alone.
+          The applications is aware through script that it was launched
+          "standalone", rather than in the context of a Web browser. This
+          differs from native applications, which always run stand alone.
         </dd>
         <dt>
           Start page:
@@ -341,13 +284,12 @@ var respecConfig = {
       </dl>
       <p>
         The web platform still lacks a standardized means for a web application
-        to be "installed" and launched as if it were an native
-        application. Having the icons of web applications appear amongst
-        applications that the user considers native (e.g., those on the home
-        screen of a device) gives the perception to users that a web
-        application has been "installed" (even if the processes that go into
-        actually "installing" a web application differ from those of a native
-        application).
+        to be "installed" and launched as if it were an native application.
+        Having the icons of web applications appear amongst applications that
+        the user considers native (e.g., those on the home screen of a device)
+        gives the perception to users that a web application has been
+        "installed" (even if the processes that go into actually "installing" a
+        web application differ from those of a native application).
       </p>
       <p>
         Because of this gap in the web platform, browser vendors, including
@@ -391,17 +333,17 @@ var respecConfig = {
         </figcaption>
       </figure>
       <p>
-        The act of adding an application to the home screen serves as a cue
-        to alter the security policy of an application. For example, in iOS,
-        and application that has been added to the home screen will no longer
-        share cookies, localStorage, IDB, etc. with Safari. The application
-        will also reset all its API permissions, so, for example, any
-        previously granted permission to access location services is forgotten
-        once the application is added to the homescreen - the end-user will
-        need to re-enable such permission again after the application is
-        launched from the homescreen. However, by adding the application to the
-        home screen, the application gains its own independent privacy settings
-        in iOS's system menu. This is shown in the figure below.
+        The act of adding an application to the home screen serves as a cue to
+        alter the security policy of an application. For example, in iOS, and
+        application that has been added to the home screen will no longer share
+        cookies, localStorage, IDB, etc. with Safari. The application will also
+        reset all its API permissions, so, for example, any previously granted
+        permission to access location services is forgotten once the
+        application is added to the homescreen - the end-user will need to
+        re-enable such permission again after the application is launched from
+        the homescreen. However, by adding the application to the home screen,
+        the application gains its own independent privacy settings in iOS's
+        system menu. This is shown in the figure below.
       </p>
       <figure>
         <img src="images/ios_privacy.png" alt="">
@@ -411,9 +353,6 @@ var respecConfig = {
       <h2>
         Bookmarking vs add to home Screen
       </h2>
-      <p>
-        &nbsp;
-      </p>
       <table width="200" border="1">
         <tr>
           <th scope="col">
@@ -472,9 +411,6 @@ var respecConfig = {
           </td>
         </tr>
       </table>
-      <p>
-        &nbsp;
-      </p>
     </section>
     <section>
       <h2>
@@ -486,8 +422,7 @@ var respecConfig = {
         Installing a web application
       </h2>
       <p>
-        The concept of an installed web apps comprises the following
-        aspects:
+        The concept of an installed web apps comprises the following aspects:
       </p>
     </section>
     <section class='appendix'>
