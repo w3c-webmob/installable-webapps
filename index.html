@@ -14,13 +14,13 @@
   <body>
     <section id='abstract'>
       <p>
-        This document outlines the use cases and requirements that would allow
+        This document provides a  historical over view of how web applications have started to be integrated into native application environments, and outlines the use cases and requirements for a W3C standard that could allow
         users to "install" web applications. The use cases and requirements
         were gathered by examining the landscape of proprietary solutions, and,
         where possible, by gathering statistics about the prevalence and usage
         patterns of particular solutions used in the wild. Proprietary
         solutions that integrate web applications into the underlying operating
-        system have been used "in the wild" for a few years now, so
+        system have been used in the wild for a few years now, so
         consolidation towards a standardized solution could potentially benefit
         users, developers, and browser vendors.
       </p>
@@ -28,14 +28,35 @@
     <section id='sotd'>
       <p>
         This document is undergoing heavy revision. If you have any thoughts or
-        comments about the content, please either join the aformetioned list or
-        file a bug on GitHub. All contributions welcome.
-      </p>
+        comments about the content, please either join the <a href="http://lists.w3.org/Archives/Public/public-web-mobile/">public-webmob mailing list</a> or
+      file a bug on GitHub. All contributions welcome. </p>
     </section>
     <section>
+    <h1>Introduction</h1>
+    <p>
+        The web platform still lacks a standardized means for a web application
+        to be "installed" and launched as if it were an native application.
+        Having the icons of web applications appear amongst applications that
+        the user considers native (e.g., those on the home screen of a device)
+        gives the perception to users that a web application has been
+        "installed" (even if the processes that go into actually "installing" a
+        web application differ from those of a native application).
+      </p>
+      <p>
+        Because of this gap in the web platform, browser vendors, including
+        Google, Apple, and Mozilla, have implemented proprietary solutions that
+        allow users to add web applications to the homescreen. To achieve this,
+        developers use proprietary opt-in mechanisms to indicate to the browser
+        that the web application can work as a stand-alone application once
+        it's added to the homescreen. These opt-in mechanisms also provide
+        metadata (e.g., the icon) that allows applications to add the
+      application to the homescreen. </p>
+    
+    </section>
+    
+  <section>
       <h2>
-        Towards installable web applications
-      </h2>
+        From bookmarks to installed web apps</h2>
       <p>
         To launch native applications on either a desktop-class machine or a
         mobile device, users are generally presented with icons and
@@ -127,14 +148,14 @@
           menu. This means that web applications and "native" applications are
           treated as different things. This separation might make sense for
           many kinds of web sites (e.g., static, informational ones that
-          provide little other ), but there is a range of applications that can
+          provide little other functionality), but there is a range of applications that can
           provide an experience that is analogous to that provided by an
           application installed locally on the user's device (e.g., a game, an
           office productivity suite, a currency converter or similar utility,
           etc.).
         </p>
         <p>
-          As shown below, this has led at least one browser to attempt to
+          As shown below, this has led at least one browser maker to attempt to
           replicate the homescreen experience directly in the browser itself.
         </p>
         <figure>
@@ -169,7 +190,7 @@
         Ideally, web applications should be immediately available to users,
         without them needing to launch a separate application (a web browser)
         and having to type a URL. And application may be found through browsing
-        the web, but once "installed", it should be functionally
+        the web (e.g., through a search engine or through a dedicated &quot;app store&quot; website), but once "installed", it should be functionally
         indistinguishable from a native application. Browser makers have long
         acknowledged this as something users would want: iOS's Safari has had
         the capability to add a website to the homescreen since early 2008
@@ -191,6 +212,7 @@
           screen (doing away with Safari's chrome).
         </figcaption>
       </figure>
+      <section>
       <h3>
         From fancy bookmark to installed webapp
       </h3>
@@ -198,16 +220,21 @@
         What initially started as a way to simply add a link to a website from
         iOS's homescreen has incrementally evolved to diminish the functional
         differences between a web application and a native application. This
-        has not happened on the OS level alone; progress on the web platform,
-        such as the ability to make content available offiline and native
-        intergration of form inputs, has assisted in diminishing these
+        has not happened on the OS level alone: progress on the web platform,
+        such as the ability to make content available off-line, performance gains through hardware acceleration, and 
+        intergration with native form controls, has assisted in diminishing these
         differences. However, tighter integration between web applications and
         the underlying operating system has meant that applications that are
         added to the homescreen behave differently to those accessed directly
-        through the web browser. There are also areas where native applications
+        through a web browser. There are also areas where native applications
         remain distinct, by having capabilities that are not accessible to
-        installed web applications. These areas are as follows:
-      </p>
+      installed web applications.      </p>
+      </section>
+      <section>
+      </section>
+      <section>
+        <h3>Key components of the installed application experience</h3>
+      <p>In order for a web application to be &quot;installed&quot; in such a way that it provides a user experience that is indistiguishable from that of a native applicatoin, a number of key things are needed:    </p>
       <dl>
         <dt>
           Naming:
@@ -237,12 +264,12 @@
         </dt>
         <dd>
           Applications, such as games, require that they be started in a
-          particular orientation to function effectively. We applications are
+          particular orientation to function effectively. Web applications are
           generally designed using responsive web design techniques, which
           means [???]
         </dd>
         <dt>
-          Self awareness
+          Self awareness:
         </dt>
         <dd>
           The applications is aware through script that it was launched
@@ -282,26 +309,8 @@
           Turning off things that can and can't be selected, etc.
         </dd>
       </dl>
-      <p>
-        The web platform still lacks a standardized means for a web application
-        to be "installed" and launched as if it were an native application.
-        Having the icons of web applications appear amongst applications that
-        the user considers native (e.g., those on the home screen of a device)
-        gives the perception to users that a web application has been
-        "installed" (even if the processes that go into actually "installing" a
-        web application differ from those of a native application).
-      </p>
-      <p>
-        Because of this gap in the web platform, browser vendors, including
-        Google, Apple, and Mozilla, have implemented proprietary solutions that
-        allow users to add web applications to the homescreen. To achieve this,
-        developers use proprietary opt-in mechanisms to indicate to the browser
-        that the web application can work as a stand-alone application once
-        it's added to the homescreen. These opt-in mechanisms also provide
-        metadata (e.g., the icon) that allows applications to add the
-        application to the homescreen. Two examples of how a developer entices
-        users to add an application to the home screen are shown below.
-      </p>
+      </section>
+      
       <figure>
         <img src="images/addtohomescreen.jpg" alt="The website, forecast.io">
         <figcaption>
