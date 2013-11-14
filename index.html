@@ -346,8 +346,9 @@
             Navigation:
           </dt>
           <dd>
-            Navigation refer to the ability for an installed web application to
-            allow users to follow hyperlinks.
+            Navigation refers to an end-user's ability to follow hyperlinks. It
+            also refers to what happens when a user clicks on a link that would
+            take user to another domain.
           </dd>
           <dt>
             UI behavior:
@@ -395,19 +396,19 @@
         find them in multiple ways.
       </p>
       <p>
-        &nbsp;
-      </p>
-      <p>
         Web applications get their names from the &lt;title&gt;. This is
         annoying. It means constantly having to fix the name when you add to
         home screen.
       </p>
       <p>
-        HTML5 provides a soluton, "application-name":
+        HTML5 provides a solution, "application-name":
       </p>
       <pre class="highlight">
-    ddd
-    
+&lt;head&gt;
+  ... 
+  &lt;meta name="application-name" content="Awesome App!"&gt; 
+  ... 
+&lt;/head&gt;
 </pre>
       <p>
         HTML5 limits this to 1 name:
@@ -435,10 +436,11 @@
         In the <a href="https://gist.github.com/7454160">October dataset</a>,
         there were 1629 sites using this string. The search query used:
       </p>
-      <p>
+      <pre class="highlight">
         find ./ -name "*ml.txt" | xargs grep -l "application-name" &gt;
         application-name.txt
-      </p>
+      
+</pre>
       <p>
         &nbsp;
       </p>
@@ -516,6 +518,31 @@
       <p>
         MS related info:
         http://msdn.microsoft.com/en-us/library/ie/gg491732(v=vs.85).aspx
+      </p>
+    </section>
+    <section>
+      <h2>
+        Orientation
+      </h2>
+      <p>
+        An application's orientation can be unlocked, meaning that the layout
+        of the application can addapt to portrait or landscape, or can be
+        locked to either portrait, landscape. Portrait or landscape can be
+        further contrained to being flippable or not. Fippable means that if
+        the device is rotated 180 degress, the display is also flipped.
+        Otherwise, the orientation remains locked.
+      </p>
+      <p>
+        Proprietary solutions - Firefox OS allows applications to be locked to
+        particular orientation through their manifest format
+      </p>
+    </section>
+    <section>
+      <h2>
+        Navigation
+      </h2>
+      <p>
+        iOS does
       </p>
     </section>
     <section>
