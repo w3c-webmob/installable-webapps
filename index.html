@@ -5,7 +5,7 @@
       Use Cases and Requirements for Installable Web Apps
     </title>
     <meta charset='utf-8'>
-    <script src='http://www.w3.org/Tools/respec/respec-w3c-common' async
+    <script src='http://www.w3.org/Tools/respec/respec-w3c-common' async=""
     class='remove'>
 </script>
     <script src="respecConfig.js" class='remove'>
@@ -14,11 +14,11 @@
   <body>
     <section id='abstract'>
       <p>
-        This document provides a historical over view of how web applications
-        have started to be integrated into native application environments, and
-        outlines the use cases and requirements for a standard that could allow
-        users to "install" web applications. The use cases and requirements
-        were gathered by examining the landscape of proprietary solutions, and,
+        This document provides an overview of how web applications have started
+        to be integrated into native application environments, and outlines the
+        use cases and requirements for a standard that could allow users to
+        "install" web applications. The use cases and requirements were
+        gathered by examining the landscape of proprietary solutions, and,
         where possible, by gathering statistics about the prevalence and usage
         patterns of particular solutions used in the wild.
       </p>
@@ -41,9 +41,9 @@
       </p>
     </section>
     <section>
-      <h1>
+      <h2>
         Introduction
-      </h1>
+      </h2>
       <p>
         To launch native applications on either a desktop-class machine or a
         mobile device, users are generally presented with icons and
@@ -56,7 +56,8 @@
         application.
       </p>
       <figure>
-        <img src="images/nativeapp_icons.jpg" alt="">
+        <img src="images/nativeapp_icons.jpg" alt=
+        "Various operating systems and their application icons.">
         <figcaption>
           Some application icons of Android 4.3, Windows Phone 7, and Mac OS
           Mavericks.
@@ -78,7 +79,7 @@
         solutions that allow users to add web applications to the homescreen.
         To get a web application to more fully integrate with the OS,
         developers are sometimes required to use proprietary opt-in mechanisms,
-        which are discussed later, to indicate to the browser that the web
+        which we discuss later, to indicate to the browser that the web
         application can potentially work as a stand-alone application once it's
         added to the homescreen. These opt-in mechanisms primarily provide the
         OS with metadata (e.g., the icons and name of the application) so when
@@ -104,19 +105,20 @@
         will then present visual links to those sites. Depending on the
         browser, user-defined and automatically-gleaned bookmarks will appear
         as a list of document titles or file names in either a drop-down menu,
-        "speed-dial" cells, a toolbar, and/or a dedicated application window or
-        tab. All these bookmark types are illustrated below.
+        "<a href=
+        "http://en.wikipedia.org/wiki/Features_of_the_Opera_web_browser#Speed_Dial">speed-dial</a>"
+        entries, a toolbar, and/or a dedicated application window or tab. All
+        these bookmark types are illustrated below.
       </p>
       <figure>
         <img src="images/desktop_bookmarking.png" alt="">
         <figcaption>
-          <p>
-            In a desktop-based browser, there are at least six different ways
-            to access bookmarks. Some of those bookmarks are derived
-            dynamically by monitoring user's browsing habits, such as the most
-            visited sites and "speed dial" entries the user sees when they open
-            a new tab.
-          </p>
+          In a desktop-based browser, there are at least six different ways to
+          access bookmarks. Some of those bookmarks are derived dynamically by
+          monitoring user's browsing habits, such as the most visited sites and
+          "<a href=
+          "http://en.wikipedia.org/wiki/Features_of_the_Opera_web_browser#Speed_Dial">speed
+          dial</a>" entries the user sees when they open a new tab.
         </figcaption>
       </figure>
       <section>
@@ -125,7 +127,7 @@
         </h3>
         <p>
           On mobile devices, the interaction model has traditionally been the
-          same as the one described above: there has historically been a clear
+          same as the one described above: historically, there's been a clear
           distinction between opening a native application and accessing a web
           application. That is, to access a Web application a user needs to
           first locate the Web browser they want to use, launch it, and then
@@ -137,29 +139,27 @@
           <img src="images/mobile_bookmarks.jpg" alt=
           "From left to right, the bookmarking facilities of Safari on iOS, Android 4.3 stock browser, Chrome on iOS, and Firefox OS's default browser.">
           <figcaption>
-            <p>
-              The bookmarking facilities of mobile browsers closely resemble
-              those of desktop-browsers - providing both a traditional list of
-              bookmarks as well as a "speed dial" that can contain either
-              automatically gleaned bookmarks or user-configured ones.
-            </p>
+            The bookmarking facilities of mobile browsers closely resemble
+            those of desktop-browsers - providing both a traditional list of
+            bookmarks as well as a "speed dial" that can contain either
+            automatically gleaned bookmarks or user-configured ones.
           </figcaption>
         </figure>
         <p>
-          Having bookmarking facilities in mobile browsers helps reduce some of
-          the burden associated with having to type URLs. Particularly for
-          sites that the user visits regularly, it means that a web site can be
-          accessed by a single press. Additionally, bookmarking facilities help
-          separate locally installed applications from web sites the user needs
-          to access for other reasons (e.g., a particular wiki page on an
-          intranet, a document with commonly required information, etc.).
+          The bookmarking facilities of mobile browsers helps reduce some of
+          the burden of typing URLs. Particularly for sites that the user
+          visits regularly, it means that a web site can be accessed by a
+          single press. Additionally, bookmarking facilities help separate
+          native applications from web sites the user needs to access for other
+          reasons (e.g., a particular wiki page on an intranet, a document with
+          commonly required information, etc.).
         </p>
         <p>
           The following table shows some examples of how a user bookmarks a
           page on a mobile browser. Both iOS and Android provide the user with
           the ability to customize the name of the bookmark, as well as
-          organize the bookmark bu placing it into a particular location.
-          Firefox OS, however, simply let's the use "star" a page - this gives
+          organize the bookmark by placing it into a particular location.
+          Firefox OS, however, simply let's the user "star" a page - this gives
           the user the option to bookmark the page. Once bookmarked, the site
           is added to a bookmarks tab (not shown below), which, unlike other
           mobile browsers, does not provide a means to manipulate the metadata
@@ -195,23 +195,23 @@
       </section>
       <section>
         <h3>
-          Limitations of bookmarking: multiple home screens
+          Side-effects of bookmarking: multiple home screens
         </h3>
         <p>
-          Because bookmarks contain links to a range of different types of
-          resources, the bookmarking facilities of desktop and mobile browsers
-          do not integrate into an operating system's application menu. This
-          means that web applications and "native" applications are treated as
-          different things. This separation makes sense for many kinds of web
-          sites (e.g., static, informational websites that provide little other
-          functionality), but there is a range of applications that can provide
-          an experience that is analogous to that provided by an application
-          installed locally on a user's device (e.g., a game, an office
-          productivity suite, a news or social networking site, a currency
-          converter or photo manipulation utility, etc.). That said, it is
-          users who are in the best position to decide what they consider an
-          "app" and where they would like to access it from (either as a
-          bookmark or as one of their locally installed application).
+          Because basic bookmarks contain links to a range of different types
+          of resources, the bookmarking facilities of desktop and mobile
+          browsers do not integrate into an operating system's application
+          menu. This means that web applications and "native" applications are
+          treated as different things. This separation makes sense for many
+          kinds of web sites (e.g., static, informational websites that provide
+          little other functionality), but there is a range of applications
+          that can provide an experience that is analogous to that provided by
+          an application installed locally on a user's device (e.g., a game, an
+          office productivity suite, a news or social networking site, a
+          currency converter or photo manipulation utility, etc.). That said,
+          it is users who are in the best position to decide what they consider
+          an "app" and where they would like to access it from (either as a
+          bookmark or as one of their locally installed applications).
         </p>
         <p>
           As shown below, this desire to treat websites as applications has led
@@ -232,14 +232,53 @@
         </figure>
         <p>
           Although this is a convenient way to access web sites, there are web
-          applications that would benefit users if they could be directly
-          available from the primary home screen. Also relegating web
-          applications to this second homescreen means that web applications
-          are treated as "second-class citizens": in the sense that in order to
-          access these applications, a user must first launch the correct
-          browser (from potentially a range of different browsers), and then
-          press the icon for the application they wish to load.
+          applications that would benefit users if they were directly available
+          from where the user normally accesses their installed applications.
+          Also relegating web applications to this second homescreen means that
+          web applications are treated as "second-class citizens": in the sense
+          that in order to access these applications, a user must first launch
+          the correct browser (from potentially a range of different browsers),
+          and then press the icon for the application they wish to load.
         </p>
+      </section>
+      <section>
+        <h3>
+          Key components of bookmarking
+        </h3>
+        <p>
+          From the discussion above, we can conclude that the key bits of
+          information that are needed to enable bookmarking are:
+        </p>
+        <dl>
+          <dt>
+            Name (label or title):
+          </dt>
+          <dd>
+            Generally this will be the title of the page being bookmarked.
+            Mobile browsers usually allow users to change this, specially when
+            bookmarking to the homescreen.
+          </dd>
+          <dt>
+            Icon:
+          </dt>
+          <dd>
+            Generally, the site's favicon. However, proprietary solutions exist
+            that allow the browser to select from a range of icons.
+          </dd>
+          <dt>
+            URL:
+          </dt>
+          <dd>
+            The URL to be loaded when the user activates the bookmark.
+          </dd>
+          <dt>
+            Organization:
+          </dt>
+          <dd>
+            Browsers generally provide some facility to allow bookmarks to be
+            organized (e.g., into folders).
+          </dd>
+        </dl>
       </section>
     </section>
     <section>
@@ -250,32 +289,32 @@
         Ideally, web applications should be immediately available to users
         without them needing to launch a separate application (a web browser)
         and having to type a URL. A user may have found a web application
-        through browsing the web (e.g., through a search engine or through a
-        website that works as an "app store"), but once added to the
-        homescreen, the developer needs to be able to control if in web
-        application opens in a Web browser environmnet or if the application is
-        launched <dfn>standalone</dfn>: that is, once the application is
-        launched, it appears indistinguishable from a native application by
-        allowing the OS to treat it as equivelent to a native application. This
-        includes, but is not limited to, integration with OS facilities such as
-        the task switcher and doing away with browser UI chrome (the address
-        bar, forward/back buttons, etc.) - so the application appears to run in
-        full-screen.
+        through browsing the web (e.g., through a search engine, via a link
+        given to them by a friend on a social network, or through a website
+        that works as an "app store"), but once added to the homescreen, the
+        developer needs to be able to control if in web application opens in a
+        Web browser environment or if the application is launched
+        <dfn>standalone</dfn>: that is, once the application is launched, it
+        appears indistinguishable from a native application by allowing the OS
+        to treat it as equivalent to a native application. This includes, but
+        is not limited to, integration with OS facilities such as the task
+        switcher and doing away with browser UI chrome (the address bar,
+        forward/back buttons, etc.).
       </p>
       <p>
-        Browser makers have long acknowledged this as something developers want
-        and that users could benefit from: iOS's Safari has had the capability
-        to add a website to the homescreen since early 2008 (as of version
-        1.1.3, as shown in the figure below); the Android's stock browser has
-        provided the capability to "add to homescreen" since at least 2009 -
-        though the process of adding to website to the homescreen was
-        significantly more convoluted.
+        Some browser makers have long acknowledged this as something developers
+        want and that users could benefit from: iOS's Safari has had the
+        capability to add a website to the homescreen since early 2008 (as of
+        version 1.1.3, as shown in the figure below); the Android's stock
+        browser has provided the capability to "add to homescreen" since at
+        least 2009. Windows 8 also provides a similar capability, called
+        "pinning", which we discuss in more detail below.
       </p>
       <figure>
         <img src="images/early_addtohomescreen.jpg" alt="iOS 1.1.3">
         <figcaption>
           iOS's Safari has almost always provided a way for users to add
-          websites to the home screen of the device. Once the use presses
+          websites to the home screen of the device. Once the user presses
           "add", the icon for the Web application is placed along side other
           native application icons.
         </figcaption>
@@ -291,31 +330,82 @@
         the home screen gained the capability to be displayed full screen
         (i.e., doing away with Safari's application chrome, as shown below).
         Apple did this by introducing a proprietary bit of HTML which
-        developers could make use of. The result of using this proprietary
-        switch is shown below.
+        developers could make use of if they so chose to. The result of using
+        this proprietary switch is shown below.
       </p>
       <figure>
         <img src="images/side-by-side.jpg" alt=
         "Variety in iOS's Safari on the left, and variety as an installed app on the right">
         <figcaption>
-          A side-by-side comparison of a web application running in Safari next
-          to the same application added to the homescreen, on the left and
-          right respectively. Note that for the installed web application on
-          the right, browser chrome, including the navigation buttons, ability
-          to bookmark, and the URL and search bar, have all been removed.
+          A side-by-side comparison of <cite>Variety</cite>'s web application
+          running in Safari next to the same application once added to the
+          homescreen, on the left and right respectively. Variety's web
+          application makes use of Apple's proprietary switch so to make sure
+          that once it's launched from iOS's homescreen the application
+          integrates with the OS. As seen on the right, this means that browser
+          chrome, including the navigation buttons, ability to bookmark, and
+          the URL and search bar, have all been removed by iOS.
         </figcaption>
       </figure>
       <p>
-        Since then, an increasing number The following table shoes
+        Windows 8 also provides similar capabilities, but in two different
+        forms: one allows a user to "Add site to Apps", meaning that a shortcut
+        icon to a web application is added amongst natively installed
+        applications. This is shown below.
+      </p>
+      <figure>
+        <img src="images/add_to_apps.png" alt="">
+        <figcaption>
+          In Windows 8, "adding a site to apps" makes a website appear amogst
+          other apps. Once added, the launch icon is treated identically from
+          other applications. Once clicked, the web application is opened in
+          Internet Explorer.
+        </figcaption>
+      </figure>
+      <p>
+        The second type of bookmarking supported by Internet Explorer is
+        pinning: this adds the site as a "live tile" to the homescreen. To best
+        support this functionality, the developer needs to include some
+        proprietary metadata for the icons and for how often the tile should be
+        updated. The site is not actually presented in the live tile, but an
+        RSS feed is used instead.
+      </p>
+      <figure>
+        <img src="images/pin.jpg" alt="">
+        <figcaption>
+          On the left, the facility that allows a site to be "pinned" to the
+          Windows 8 homescreen. On the right, the result of pinning a site is
+          shown. Note that the content shown in the tile comes from an RSS
+          feed, and not from the HTML of the site itself.
+        </figcaption>
+      </figure>
+      <p>
+        What initially started as a way to add a link to the homescreen has
+        incrementally evolved to diminish the functional differences between a
+        web application and a native application. This has not happened on the
+        OS level alone: progress on the web platform, such as the ability to
+        make content available off-line, performance gains through hardware
+        acceleration, and integration with native form controls, has assisted
+        in diminishing these differences.
+      </p>
+      <p>
+        But it should be noted that being able to have bookmarks outside the
+        web browser is not something particularly new or noble. Desktop
+        browsers have had that capability for possibly over a decade. However,
+        giving developers the choice to tightly integrate their web
+        applications into the OS directly from the Web browser is still
+        somewhat new (hence all the proprietary switches and fragmentation in
+        this space). This is different from packaged applications (zipped-up
+        HTML applications) or hybrid application (applications that are
+        distributed as native applications, but rely on a Webview), in that
+        they applications are "installed" directly from the browser itself
+        rather than from an app store.
       </p>
       <table border="1">
         <caption>
           Examples of add to homescreen on mobile browsers
         </caption>
         <tr>
-          <th scope="col">
-            Action
-          </th>
           <th scope="col">
             iOS 7's Safari
           </th>
@@ -328,9 +418,6 @@
         </tr>
         <tr>
           <td>
-            Add to home screen
-          </td>
-          <td>
             <img src="images/addtohomescreen/addtohome_ios.png" alt=".">
           </td>
           <td>
@@ -341,88 +428,69 @@
           </td>
         </tr>
       </table>
-      <p>
-        It must be noted that being able to have bookmarks outside the web
-        browser is not something particuarly new or nobel. Desktop browsers
-        have had this capability for possibly over a decade.
-      </p>
       <section>
         <h3>
-          From fancy bookmark to installed webapp
+          Key components of the "standalone" web application
         </h3>
         <p>
-          What initially started as a way to simply add a link to a website
-          from iOS's homescreen has incrementally evolved to diminish the
-          functional differences between a web application and a native
-          application. This has not happened on the OS level alone: progress on
-          the web platform, such as the ability to make content available
-          off-line, performance gains through hardware acceleration, and
-          integration with native form controls, has assisted in diminishing
-          these differences.
+          Web Applications that opt-into being run standalone have somewhat
+          different requirements to web applications a user has bookmarked to
+          the homescreen. This is because OS level facilities of interacting
+          with and controlling native applications are different from those of
+          a web browsers.
         </p>
-        <p>
-          However, tighter integration between web applications and the
-          underlying operating system has meant that applications that are
-          added to the homescreen behave differently to those accessed directly
-          through a web browser. There are also areas where native applications
-          remain distinct, by having capabilities that are not accessible to
-          installed web applications.
-        </p>
-      </section>
-      <section>
-        <h3>
-          Key components of the installed application experience
-        </h3>
         <p>
           In order for a web application to be "installed" in such a way that
           it provides a user experience that is indistinguishable from that of
-          a native application, a number of key things are needed:
+          a native application, a number of key things are needed. This list
+          compliments the list of things needed for bookmarking:
         </p>
         <dl>
           <dt>
-            Name(s):
+            Standalone switch:
           </dt>
           <dd>
-            The ability for a user to find an application through its name(s).
+            If a developer feels that their web application is analogous to a
+            native application (e.g., it works offline, doesn't need a
+            navigation bar, etc.), then they use some kind of switch (e.g.,
+            through markup) to indicate this to the OS when the application is
+            added to the homescreen. Otherwise, the installed web application
+            is treated as a regular bookmark and launched in the appropriate
+            browser.
+          </dd>
+          <dt>
+            Name:
+          </dt>
+          <dd>
+            The ability for a user to find an application through its name.
             Some OSs allow native applications to be found by using multiple
-            names. Web applications, because of HTML's origin as a
-            document-publishing format, have a "title" and these titles are
-            applied "per page" basis using HTML's &lt;title&gt; element.
+            names.
           </dd>
           <dt>
             Icons:
           </dt>
           <dd>
-            The graphical representations that represent the application in
-            various contexts (primarily, an icon that functions as an
-            application's unique identifier amongst a list of installed
-            applications), but also in other contexts - such as settings
-            screen. Because of the various contexts that a native application's
-            icon can appear in an OS, native applications typically need to
-            provide a large range of icons at different sizes and, more
-            recently, specifically targeted at different device pixel
-            densities.
-          </dd>
-          <dt>
-            Indication that the application can work standalone:
-          </dt>
-          <dd>
-            ....
+            Generally a small graphic that functions as an application's unique
+            visual identifier amongst a list of installed applications. An
+            application's icon can also be used in other contexts such a
+            settings screen, dialogs, notifications and other menus. Because of
+            the various contexts that a application's icon can appear in an OS,
+            applications typically need to provide a range of icons at
+            different sizes and, more recently, specifically targeted at
+            different device pixel densities.
           </dd>
           <dt>
             Orientation:
           </dt>
           <dd>
             Applications, such as games, require that they be started in a
-            particular orientation to function effectively. Web applications
-            are generally designed using responsive web design techniques,
-            which means [???]
+            particular orientation to function effectively.
           </dd>
           <dt>
             Self awareness:
           </dt>
           <dd>
-            The applications is aware through script that it was launched
+            The application is aware through script that it was launched
             "standalone", rather than in the context of a Web browser. This
             differs from native applications, which always run stand alone.
           </dd>
@@ -430,7 +498,7 @@
             Start page:
           </dt>
           <dd>
-            As an web application can be added to the homescreen at any point
+            As a web application can be added to the homescreen at any point
             the user desires.
           </dd>
           <dt>
@@ -444,235 +512,233 @@
             Privacy:
           </dt>
           <dd>
-            Integration with privacy settings at the OS level.
+            In web browsers, user's are generally able to control privacy
+            settings for a particular website through "site preferences" or
+            through the browser's settings. When a web application is taken out
+            of the browser context, it needs to either integrate with the
+            privacy settings at the OS level or some other intermidiary
+            application needs to provide this capability.
           </dd>
           <dt>
             Navigation:
           </dt>
           <dd>
-            Navigation refers to an end-user's ability to follow hyper-links.
-            It also refers to what happens when a user clicks on a link that
-            would take user to another domain.
+            Applications are generaly composed of one ore more panes, which
+            together provide the capabilities of the application. Users
+            generally navigate around different panes depending on what they
+            are trying to achieve. Web applications, on the othe hand,
+            generally rely on hyperlinking from one document to another.
           </dd>
           <dt>
             UI behavior:
           </dt>
           <dd>
-            Turning off things that can and can't be selected, etc.
+            Unlike web pages, applications generally don't allow user's to
+            select ever span of text on the page.
           </dd>
         </dl>
       </section>
-      <figure>
-        <img src="images/addtohomescreen.jpg" alt="The website, forecast.io">
-        <figcaption>
-          <p>
-            The figure shows web applications that asks the end-user to add the
-            web application to the homescreen. On the left <a href=
-            "http://forecast.io">forecast.io</a> and <a href=
-            "http://m.espn.go.com">ESPN</a> on the right.
-          </p>
-        </figcaption>
-      </figure>
+    </section>
+    <section>
+      <h2>
+        Indication that the application can work standalone
+      </h2>
       <p>
-        When users add a web application to the home screen and the web
-        application is launched, the OS can automatically integrate the web
-        application into facilities like the task switcher. As can be seen in
-        the figure below, this makes the distinction between a native
-        application and a web application negligible from an OS-integration
-        perspective.
+        As already discussed, web applications can be added to the homescreen
+        of a device in such a manner that they behave just like bookmarks. That
+        is, once added to the homescreen, when the icon of the web application
+        is activated, a web browser is launched and the desired web page is
+        loaded.
+      </p>
+      <p>
+        However, through various proprietary opt-in mechanisms, developers are
+        able to inform the browser that the application is able to work
+        "standalone": that is, it is able to function without the user
+        interface chrome of a browser - which typically means an web
+        application will be launched in full screen. Depending on the OS and
+        browser, these opt-in mechanisms can have various side-effects. One
+        such web application, <a href="http://forecase.io">Forecast.io</a>, is
+        shown below running in iOS.
       </p>
       <figure>
         <img src="images/ios_integration.jpg" alt="">
         <figcaption>
-          <p>
-            The figure shows how the <cite><a href=
-            "http://forecase.io">Forecast</a></cite> web application integrates
-            with iOS 7's task switcher. Note also the web application's launch
-            icon is indistinguishable from those of other applications.
-          </p>
+          The figure shows how the <cite><a href=
+          "http://forecase.io">Forecast.io</a></cite> web application
+          integrates with iOS 7's task switcher. Note also the web
+          application's launch icon is indistinguishable from those of other
+          applications.
         </figcaption>
       </figure>
       <section>
-        <h2>
-          Indication that the application can work standalone
-        </h2>
+        <h3>
+          iOS7 Safari
+        </h3>
         <p>
-          As already discussed, web applications can be added to the homescreen
-          of a device in such a manner that they behave just like bookmarks.
-          That is, once added to the homescreen, when the icon of the web
-          application is activated, a web browser is launched and the desired
-          web page is loaded.
+          In iOS, then means by which an application developer indicates that
+          their application can be run "standalone" is by using a meta element
+          that takes the following form:
         </p>
-        <p>
-          However, through various proprietary opt-in mechanisms, developers
-          are able to inform the browser that the application is able to work
-          "stand alone": that is, it is able to function without the user
-          interface chrome of a browser - which typically means an web
-          application will be launched in full screen. Depending on the OS and
-          browser, these opt-in mechanisms can have various side-effects.
-        </p>
-        <section>
-          <h3>
-            iOS7 Safari
-          </h3>
-          <p>
-            In iOS, then means by which an application developer indicates that
-            their application can be run "standalone" is by using a meta
-            element that takes the following form:
-          </p>
-          <pre class="example highlight">
+        <pre class="example highlight">
 &lt;meta name="apple-mobile-web-app-capable" content="yes"&gt;
 </pre>
-          <p>
-            By declaring the above in a document, iOS will launch an
-            application that has been added to the home page in fullscreen
-            (without any browser chrome).
-          </p>
-          <p>
-            If the meta tag is omitted, and a user adds a page to the home
-            screen, then the web application simply it opens in a tab within
-            Safari.
-          </p>
-        </section>
-        <section>
-          <h3>
-            Chrome beta for Android
-          </h3>
-          <p>
-            Google Chrome Beta for Android reuses Apple's convention of using a
-            meta tag whose name is "<code>apple-mobile-web-app-capable</code>".
-            It also introduces it's own value
-            "<code>mobile-web-app-capable</code>".
-          </p>
-          <pre class="example highlight">
+        <p>
+          By declaring the above in a document, iOS will launch an application
+          that has been added to the home page in fullscreen (without any
+          browser chrome).
+        </p>
+        <p>
+          If the meta tag is omitted, and a user adds a page to the home
+          screen, then the web application simply opens in a tab within Safari.
+        </p>
+        <p>
+          TODO: Discuss that a side effect is the following practice, which can
+          range from the annoying to the just bad and requires browser sniffing
+          (so you know where to point the "add to home screen" arrow, which is
+          different on every browser). Having an API might help with this
+          problem, but allowing developers to be a bit more descrete about
+          adding to homescreen.
+        </p>
+        <figure>
+          <img src="images/addtohomescreen.jpg" alt="The website, forecast.io">
+          <figcaption>
+            The figure shows web applications that asks the end-user to add the
+            web application to the homescreen. On the left <a href=
+            "http://forecast.io">forecast.io</a> and <a href=
+            "http://m.espn.go.com">ESPN</a> on the right.
+          </figcaption>
+        </figure>
+      </section>
+      <section>
+        <h3>
+          Chrome beta for Android
+        </h3>
+        <p>
+          Google Chrome Beta for Android reuses Apple's convention of using a
+          meta tag whose name is "<code>apple-mobile-web-app-capable</code>".
+          It also introduces it's own value
+          "<code>mobile-web-app-capable</code>".
+        </p>
+        <pre class="example highlight">
 &lt;meta name="mobile-web-app-capable" content="yes"&gt;
 </pre>
-          <p>
-            By declaring the above in a document, Chrome will launch an
-            application that has been added to the home page in fullscreen
-            (without any browser chrome).
-          </p>
-          <p>
-            If the <code>meta</code> element is missing, then the site is
-            launched as a tab within Chrome.
-          </p>
-        </section>
-        <section>
-          <h3>
-            Firefox OS
-          </h3>
-          <p>
-            Firefox OS lacks a way to declaratively indicate to the Web browser
-            that the application can run standalone when lunched. Instead,
-            Firefox OS relies on an API to provide this functionality. The
-            <code>mozApps.install()</code> method takes a url to a JSON file as
-            an argument. The JSON file supplies Firefox OS with the relevant
-            metadata (e.g., application's name, URLs for the icons, etc.)
-            needed to make installation possible.
-          </p>
-          <pre class="highlight">
+        <p>
+          By declaring the above in a document, Chrome will launch an
+          application that has been added to the home page in fullscreen
+          (without any browser chrome).
+        </p>
+        <p>
+          If the <code>meta</code> element is missing, then the site is
+          launched as a tab within Chrome.
+        </p>
+      </section>
+      <section>
+        <h3>
+          Firefox OS
+        </h3>
+        <p>
+          Firefox OS lacks a way to declaratively indicate to the Web browser
+          that the application can run standalone when lunched. Instead,
+          Firefox OS relies on an API to provide this functionality. The
+          <code>mozApps.install()</code> method takes a url to a JSON file as
+          an argument. The JSON file supplies Firefox OS with the relevant
+          metadata (e.g., application's name, URLs for the icons, etc.) needed
+          to make installation possible.
+        </p>
+        <pre class="highlight">
 navigator.mozApps.install(pathToManifest);
 </pre>
-        </section>
       </section>
-      <h2>
-        Names
-      </h2>
-      <p>
-        Native applications can have multiple names. Because of this, you can
-        find them in multiple ways.
-      </p>
-      <p>
-        Web applications get their names from the &lt;title&gt;. This is
-        annoying. It means constantly having to fix the name when you add to
-        home screen.
-      </p>
-      <p>
-        HTML5 provides a solution, "application-name":
-      </p>
-      <pre class="highlight">
+    </section>
+    <h2>
+      Names
+    </h2>
+    <p>
+      Native applications can have multiple names. Because of this, you can
+      find them in multiple ways.
+    </p>
+    <p>
+      Web applications, because of HTML's origin as a document-publishing
+      format, have a "title" and these titles are applied "per page" basis
+      using HTML's &lt;title&gt; element. This is annoying. It means constantly
+      having to fix the name when you add to home screen.
+    </p>
+    <p>
+      HTML5 provides a solution, "application-name":
+    </p>
+    <pre class="highlight">
 &lt;head&gt;
   ... 
   &lt;meta name="application-name" content="Awesome App!"&gt; 
   ... 
 &lt;/head&gt;
 </pre>
+    <p>
+      HTML5 limits this to 1 name:
+    </p>
+    <p>
+      HTML says:
+    </p>
+    <blockquote>
       <p>
-        HTML5 limits this to 1 name:
+        The value must be a short free-form string giving the name of the Web
+        application that the page represents. If the page is not a Web
+        application, the application-name metadata name must not be used. There
+        must not be more than one meta element with its name attribute set to
+        the value application-name per document. User agents may use the
+        application name in UI in preference to the page's title, since the
+        title might include status messages and the like relevant to the status
+        of the page at a particular moment in time instead of just being the
+        name of the application.
       </p>
-      <p>
-        HTML says:
-      </p>
-      <blockquote>
-        <p>
-          The value must be a short free-form string giving the name of the Web
-          application that the page represents. If the page is not a Web
-          application, the application-name metadata name must not be used.
-          There must not be more than one meta element with its name attribute
-          set to the value application-name per document. User agents may use
-          the application name in UI in preference to the page's title, since
-          the title might include status messages and the like relevant to the
-          status of the page at a particular moment in time instead of just
-          being the name of the application.
-        </p>
-      </blockquote>
-      <p>
-        Support in browsers: Internet Explorer
-      </p>
-      <p>
-        In the <a href="https://gist.github.com/7454160">October data set</a>,
-        there were 1629 sites using this string. The search query used:
-      </p>
-      <pre class="highlight">
+    </blockquote>
+    <p>
+      Support in browsers: Internet Explorer
+    </p>
+    <p>
+      In the <a href="https://gist.github.com/7454160">October data set</a>,
+      there were 1629 sites using this string. The search query used:
+    </p>
+    <pre class="highlight">
         find ./ -name "*ml.txt" | xargs grep -l "application-name" &gt;
         application-name.txt
-      
 </pre>
-      <h2>
-        Icons
-      </h2>
-      <p>
-        Native applications have lots of icons. iOS uses xxx many. Android
-        needs yyy many.
-      </p>
-      <p>
-        Web applications have traditionally only used 1 (favicon).
-      </p>
-      <p>
-        Icons on native platforms need to be designed for multiple densities -
-        not just resolutions.
-      </p>
-      <h2>
-        Security and privacy
-      </h2>
-      <p>
-        The act of adding an application to the home screen serves as a cue to
-        alter the security policy of an application. For example, in iOS, and
-        application that has been added to the home screen will no longer share
-        cookies, localStorage, IDB, etc. with the Safari Web browser. The OS
-        will also reset all its API permissions, so, for example, any
-        previously granted permission to access location services that occurred
-        in the browser are forgotten once the application is added to the
-        homescreen - the end-user will need to re-enable such permission again
-        after the application is launched from the homescreen.
-      </p>
-      <p>
-        Furthermore, by adding the application to the home screen, the
-        application gains its own independent privacy settings in iOS's privacy
-        menus. This is shown in the figure below.
-      </p>
-      <figure>
-        <img src="images/ios_privacy.png" alt=
-        "iOS's privacy for location settings">
-        <figcaption>
-          iOS privacy settings for location services. Shown is Forecast, which
-          is an installed web application as well as the Safari Web browser.
-          Here, users can disable the . More importantly, disabling location
-          services for the Web browser does not affect the ability of Forecast
-          to access location services.
-        </figcaption>
-      </figure>
-    </section>
+    <h2>
+      Icons
+    </h2>
+    <p>
+      ...
+    </p>
+    <h2>
+      Security and privacy
+    </h2>
+    <p>
+      The act of adding an application to the home screen serves as a cue to
+      alter the security policy of an application. For example, in iOS, and
+      application that has been added to the home screen will no longer share
+      cookies, localStorage, IDB, etc. with the Safari Web browser. The OS will
+      also reset all its API permissions, so, for example, any previously
+      granted permission to access location services that occurred in the
+      browser are forgotten once the application is added to the homescreen -
+      the end-user will need to re-enable such permission again after the
+      application is launched from the homescreen.
+    </p>
+    <p>
+      Furthermore, by adding the application to the home screen, the
+      application gains its own independent privacy settings in iOS's privacy
+      menus. This is shown in the figure below.
+    </p>
+    <figure>
+      <img src="images/ios_privacy.png" alt=
+      "iOS's privacy for location settings">
+      <figcaption>
+        iOS privacy settings for location services. Shown is Forecast, which is
+        an installed web application as well as the Safari Web browser. Here,
+        users can disable the . More importantly, disabling location services
+        for the Web browser does not affect the ability of Forecast to access
+        location services.
+      </figcaption>
+    </figure>
     <section>
       <h2>
         Start page
@@ -805,60 +871,59 @@ document.addEventListener("click", function (e) {
     </section>
     <section>
       <h2>
-        Installing a web application
-      </h2>
-      <p>
-        The concept of an installed web apps comprises the following aspects:
-      </p>
-    </section>
-    <section>
-      <h2>
         Requirements
       </h2>
       <p>
         A standardized solution:
       </p>
       <ul>
-        <li>MUST NOT conflate bookmarking with allowing an web application to
-        be launched as standalone.
+        <li>MUST provide a mechanism that allows a developer to indicate that
+        the application is able to function as standalone. If no such
+        indication is given by the developer, then the application MUST launch
+        in the Web browser as normal. That is, the solution MUST NOT conflate
+        bookmarking with allowing a web application to be launched as
+        standalone.
         </li>
-        <li>MUST provide mechanism that allows developer to indicate that the
-        application is able to function either as standalone or requires the
-        browser.
-        </li>
-        <li>MUST provide mechanism for the application to check (e.g., via
+        <li>MUST provide a mechanism for the application to check (e.g., via
         script) if it's running as a standalone application.
         </li>
-        <li>MAY provide a mechanism for the developer to interogate the browser
-        about what UI chrome is available (e.g., ).
+        <li>MAY provide a mechanism for the developer to interrogate the
+        browser about what UI chrome is available (e.g., is there a navigation
+        bar?).
         </li>
         <li>MUST provide a means to include a name for the web application.
-        This name is not the same as the document's title.
+        This name is not the same as the document's title, though the document
+        title could serve as the name if the name is missing.
         </li>
         <li>SHOULD provide a means to support a short name for the application.
         </li>
         <li>MUST specify the default navigation behavior for a standalone
         application.
         </li>
-        <li>MUST clarify security model with regards to how permissions and
-        data are shared with the web browser from which the web applications
-        was bookmarked or installed.
+        <li>MUST clarify the security model with regards to how permissions and
+        data are shared with the web browser from which the web application was
+        bookmarked or installed. This could possibly allow the developer to
+        opt-into (or out of) sharing cookies, storage data, etc. with the
+        browser that installed the application.
         </li>
         <li>MUST provide a means to declare multiple iconic representations
-        suitable for a range of context, including, but not limited to. In
-        addition, the solution SHOULD allow developer to indicate the
-        dimensions, format, as well as a means to indicate the preferred
-        device-pixel-ratio at which the an icon should be used.
+        suitable for a range of contexts. In addition, the solution SHOULD
+        allow developers to declare the dimensions, format, as well as a means
+        to indicate the preferred device-pixel-ratio at which each icon should
+        be used.
         </li>
         <li>MUST provide a means to declare the orientation that the
         application needs to be in when launched. The solution MUST allow the
-        application to fully lock to a particular orientaiton, or allow a
+        application to fully lock to a particular orientation, or allow a
         soft-lock to a particular orientation: meaning that if the user flips
         the device 180 degrees, the document is also flipped.
         </li>
-        <li>MUST provide a means that allows the developer to diclare the URL
+        <li>MUST provide a means that allows the developer to declare the URL
         that will be opened when the application is launched. This URL
         overrides the URL from which the document was added to the homescreen.
+        </li>
+        <li>SHOULD standardize an API for adding web applications to the
+        homescreen.
         </li>
       </ul>
     </section>
