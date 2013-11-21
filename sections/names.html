@@ -1,0 +1,54 @@
+<h2>
+  Names
+</h2>
+<p>
+Native applications can have multiple names. Because of this, you can
+find them in multiple ways.
+</p>
+<p>
+Web applications, because of HTML's origin as a document-publishing
+format, have a "title" and these titles are applied "per page" basis
+using HTML's &lt;title&gt; element. This is annoying. It means constantly
+having to fix the name when you add to home screen.
+</p>
+<p>
+HTML5 provides a solution, "application-name":
+</p>
+<pre class="highlight">
+&lt;head&gt;
+  ...
+  &lt;meta name="application-name" content="Awesome App!"&gt;
+  ...
+&lt;/head&gt;
+</pre>
+<p>
+HTML5 limits this to 1 name:
+</p>
+<p>
+HTML says:
+</p>
+<blockquote>
+  <p>
+  The value must be a short free-form string giving the name of the Web
+  application that the page represents. If the page is not a Web
+  application, the application-name metadata name must not be used. There
+  must not be more than one meta element with its name attribute set to
+  the value application-name per document. User agents may use the
+  application name in UI in preference to the page's title, since the
+  title might include status messages and the like relevant to the status
+  of the page at a particular moment in time instead of just being the
+  name of the application.
+  </p>
+</blockquote>
+<p>
+Support in browsers: Internet Explorer
+</p>
+<p>
+In the <a href="https://gist.github.com/7454160">October data set</a>,
+there were 1629 sites using this string. The search query used:
+</p>
+<pre class="highlight">
+        find ./ -name "*ml.txt" | xargs grep -l "application-name" &gt;
+        application-name.txt
+</pre>
+
