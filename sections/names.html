@@ -17,9 +17,9 @@ name for different use cases. The three options are:</p>
 </ol>
 
 <p>iOS and Android developers also need to define a listings name during the
-application submision process to the store which is used in the store listings.
-The Windows Store, on the other hand, requires developers to use the same app
-name in the manifest and the store.</p>
+application submission process to the store which is used in the store
+listings.  The Windows Store, on the other hand, requires developers to use the
+same app name in the manifest and the store.</p>
 
 <h3>Usage in web applications</h3>
 
@@ -37,14 +37,14 @@ status messages.</p>
 <p>HTML says:</p>
 
 <blockquote>
-<p>The value must be a short free-form string giving the name of the Web
-application that the page represents. If the page is not a Web application, the
-application-name metadata name must not be used. There must not be more than
-one meta element with its name attribute set to the value application-name per
-document. User agents may use the application name in UI in preference to the
-page's title, since the title might include status messages and the like
-relevant to the status of the page at a particular moment in time instead of
-just being the name of the application.</p>
+  <p>The value must be a short free-form string giving the name of the Web
+  application that the page represents. If the page is not a Web application,
+  the application-name metadata name must not be used. There must not be more
+  than one meta element with its name attribute set to the value
+  application-name per document. User agents may use the application name in UI
+  in preference to the page's title, since the title might include status
+  messages and the like relevant to the status of the page at a particular
+  moment in time instead of just being the name of the application.</p>
 </blockquote>
 
 <h3>Support in browsers</h3>
@@ -62,12 +62,15 @@ just being the name of the application.</p>
 <h4>Safari Mobile</h4>
 
 <p>Since iOS6, apple supports it's own version of "application-name" metadata
-called "apple-mobile-web-app-title". However, it doesn't use "application-name"
-(TODO: VERIFY)</p>
+called "apple-mobile-web-app-title". However, it doesn't use
+"application-name"</p>
 
-<h4>Chrome Mobile</h4>
+<p>If "apple-mobile-web-app-title" is missing, the document title is used
+instead.</p>
 
-<p>TODO: CHECK</p>
+<h4>Chrome Mobile and Firefox for Android</h4>
+
+<p>Both, Chrome Mobile and Firefox for Android only use the title tag.</p>
 
 <h3>Current tag ussage</h3>
 
