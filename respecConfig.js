@@ -36,8 +36,13 @@ var respecConfig = {
       mailto: 'w3c@marcosc.com',
       company: 'Mozilla',
       companyURL: 'http://mozilla.com/'
-              }
-          ],
+    },
+    {
+      name: 'Ernesto Jiménez',
+      url: 'http://ernesto-jimenez.com',
+      mailto: 'me@ernesto-jimenez.com'
+    }
+  ],
 
   // name of the WG
   wg: 'Web and Mobile Interest Group (WebMob)',
