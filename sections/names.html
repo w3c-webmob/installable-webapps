@@ -1,54 +1,117 @@
-<h2>
-  Names
-</h2>
-<p>
-Native applications can have multiple names. Because of this, you can
-find them in multiple ways.
-</p>
-<p>
-Web applications, because of HTML's origin as a document-publishing
-format, have a "title" and these titles are applied "per page" basis
-using HTML's &lt;title&gt; element. This is annoying. It means constantly
-having to fix the name when you add to home screen.
-</p>
-<p>
-HTML5 provides a solution, "application-name":
-</p>
-<pre class="highlight">
-&lt;head&gt;
-  ...
-  &lt;meta name="application-name" content="Awesome App!"&gt;
-  ...
-&lt;/head&gt;
-</pre>
-<p>
-HTML5 limits this to 1 name:
-</p>
-<p>
-HTML says:
-</p>
+<h2>Application Names</h2>
+
+<h3>Usage in native apps</h3>
+
+<p>Native platforms sometimes allow developers to define more than one display
+name for different use cases. The three options are:</p>
+
+<ol>
+  <li>Define a single display name. E.g.: Windows Phone and Firefox OS.</li>
+  <li>Define a default display name and an optional short name: the platform
+  uses whether to use the long or the short name depending on where it's going
+  to be used. E.g.: iOS applications and W3C Widgets</li>
+  <li>Define a default display name and allow fine-grained control to set
+  display names for different use cases. E.g.: Android Manifest file allows
+  fine-grained control on the display name to be shown in the home screen,
+  intents and different activities.</li>
+</ol>
+
+<p>iOS and Android developers also need to define a listings name during the
+application submission process to the store which is used in the store
+listings.  The Windows Store, on the other hand, requires developers to use the
+same app name in the manifest and the store.</p>
+
+<h3>Usage in web applications</h3>
+
+<p>Web applications have traditionally used the "title" element since it was
+traditionally available in the standards. However, due to HTML's origin as a
+document-publishing format, titles are applied "per page" and tend to be more
+descriptive or include status messages. This is annoying. It means users have
+to fix the name when you add to the home screen to remove page-specific or
+status messages.</p>
+
+<p>HTML5 provides a solution, "application-name":</p>
+
+<pre class="highlight">&lt;head&gt; ...  &lt;meta name="application-name" content="Awesome App!"&gt; ...  &lt;/head&gt;</pre>
+
+<p>HTML says:</p>
+
 <blockquote>
-  <p>
-  The value must be a short free-form string giving the name of the Web
-  application that the page represents. If the page is not a Web
-  application, the application-name metadata name must not be used. There
-  must not be more than one meta element with its name attribute set to
-  the value application-name per document. User agents may use the
-  application name in UI in preference to the page's title, since the
-  title might include status messages and the like relevant to the status
-  of the page at a particular moment in time instead of just being the
-  name of the application.
-  </p>
+  <p>The value must be a short free-form string giving the name of the Web
+  application that the page represents. If the page is not a Web application,
+  the application-name metadata name must not be used. There must not be more
+  than one meta element with its name attribute set to the value
+  application-name per document. User agents may use the application name in UI
+  in preference to the page's title, since the title might include status
+  messages and the like relevant to the status of the page at a particular
+  moment in time instead of just being the name of the application.</p>
 </blockquote>
-<p>
-Support in browsers: Internet Explorer
-</p>
-<p>
-In the <a href="https://gist.github.com/7454160">October data set</a>,
-there were 1629 sites using this string. The search query used:
-</p>
-<pre class="highlight">
-        find ./ -name "*ml.txt" | xargs grep -l "application-name" &gt;
-        application-name.txt
-</pre>
+
+<h3>Support in browsers</h3>
+
+<h4>Internet Explorer</h4>
+<blockquote>
+  <p>The "application-name" metadata defines the name of the Pinned site
+  application instance. This is the name that appears in a tooltip when
+  hovering over the Pinned site button on the Windows 7 taskbar. The
+  application name is also appended to the window title of the Pinned site
+  application instance.</p>
+  <p>If this element is missing, the document title is used instead.</p>
+</blockquote>
+
+<h4>Safari Mobile</h4>
+
+<p>Since iOS6, apple supports it's own version of "application-name" metadata
+called "apple-mobile-web-app-title". However, it doesn't use
+"application-name"</p>
+
+<p>If "apple-mobile-web-app-title" is missing, the document title is used
+instead.</p>
+
+<h4>Chrome Mobile and Firefox for Android</h4>
+
+<p>Both, Chrome Mobile and Firefox for Android only use the title tag.</p>
+
+<h3>Current tag ussage</h3>
+
+<p>We analysed the <a href="https://gist.github.com/7454160">October data
+set</a> (78,156 sites) to review the ussage of the different meta tags to
+define names:</p>
+
+<ol>
+  <li><strong>"application-name"</strong>: used in 1,571 sites.</li>
+  <li><strong>"apple-mobile-web-app-title"</strong>: used in 244 sites. 50 of
+  those sites used "application-name" too.</li>
+</ol>
+
+<p>We also analysed the length of the content of these tags (TODO: FIX wrong
+numbers due to character encoding issues):</p>
+
+<table border="1">
+  <thead>
+    <tr>
+      <td>metadata</td>
+      <td>min</td>
+      <td>max</td>
+      <td>mean</td>
+      <td>median</td>
+    </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td>"application-name"</td>
+    <td>2</td>
+    <td>312</td>
+    <td>20</td>
+    <td>13</td>
+  </tr>
+  <tr>
+    <td>"apple-mobile-web-app-title"</td>
+    <td>2</td>
+    <td>190</td>
+    <td>11</td>
+    <td>8</td>
+  </tr>
+  </tbody>
+</table>
 
