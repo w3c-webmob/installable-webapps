@@ -115,3 +115,19 @@ numbers due to character encoding issues):</p>
   </tbody>
 </table>
 
+<h3>Localizing Application Names</h3>
+
+<p>All native platforms allow for localization of the manifest contents. The
+way they handle localization falls into two categories:</p>
+
+<ul>
+  <li>Setting localization keys as names: rather than writing the name in the
+  manifest the developer would assign a localization key as the name and let
+  the platform translate it with the native localization system. Platforms
+  doing this include Android and Windows Phone.</li>
+  <li>Adding localized content in the manifest: in this case, the developer
+  includes the application name in different languages in the manifest itself.
+  The Widgets spec does this by supporting <code>xml:lang</code> and Firefox OS
+  incluides a <code>locales</code> property in the manifest.</li>
+</ul>
+
