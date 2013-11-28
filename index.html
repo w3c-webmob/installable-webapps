@@ -592,6 +592,10 @@
           screen, then the web application simply opens in a tab within Safari.
         </p>
         <p>
+          We analysed the <a href="https://gist.github.com/7454160">October
+          data set</a> and found 844 sites declared
+          "apple-mobile-web-app-capable".</p>
+        <p>
           TODO: Discuss that a side effect is the following practice, which can
           range from the annoying to the just bad and requires browser sniffing
           (so you know where to point the "add to home screen" arrow, which is
@@ -630,6 +634,11 @@
         <p>
           If the <code>meta</code> element is missing, then the site is
           launched as a tab within Chrome.
+        </p>
+        <p>
+          We analysed the <a href="https://gist.github.com/7454160">October
+          data set</a> and found 9 sites declared "mobile-web-app-capable". 4
+          of those websites declared "apple-mobile-web-app-capable" too.
         </p>
       </section>
       <section>
@@ -708,10 +717,14 @@ navigator.mozApps.install(pathToManifest);
 &lt;/head&gt;
 </pre>
       <p>
+        link[rel=home] found in 370 websites from Ocotober's dataset.
+      </p>
+      <p>
         ... http://microformats.org/wiki/rel-home
       </p>
       <p>
-        Proprietary uses: <code>msapplication-starturl</code>
+        Proprietary uses: <code>msapplication-starturl</code> (found in 403
+        sites from the October dataset, 8 of those also declared lin[rel=home])
       </p>
       <p>
         MS related info:
