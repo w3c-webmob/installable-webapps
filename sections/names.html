@@ -8,27 +8,27 @@ name for different use cases. The three options are:</p>
 <ol>
   <li>Define a single display name. E.g.: Windows Phone and Firefox OS.</li>
   <li>Define a default display name and an optional short name: the platform
-  uses whether to use the long or the short name depending on where it's going
-  to be used. E.g.: iOS applications and W3C Widgets</li>
+  chooses whether to use the long or the short name depending on where it is
+  going to be used. E.g.: iOS applications and W3C Widgets</li>
   <li>Define a default display name and allow fine-grained control to set
   display names for different use cases. E.g.: Android Manifest file allows
-  fine-grained control on the display name to be shown in the home screen,
+  fine-grained control of the display name to be shown in the home screen,
   intents and different activities.</li>
 </ol>
 
 <p>iOS and Android developers also need to define a listings name during the
 application submission process to the store which is used in the store
-listings.  The Windows Store, on the other hand, requires developers to use the
+listings. The Windows Store, on the other hand, requires developers to use the
 same app name in the manifest and the store.</p>
 
 <h3>Usage in web applications</h3>
 
 <p>Web applications have traditionally used the "title" element since it was
-traditionally available in the standards. However, due to HTML's origin as a
+available in the standards. However, due to HTML's origin as a
 document-publishing format, titles are applied "per page" and tend to be more
 descriptive or include status messages. This is annoying. It means users have
-to fix the name when you add to the home screen to remove page-specific or
-status messages.</p>
+to fix the name when adding an app to the home screen to remove page-specific
+or status messages.</p>
 
 <p>HTML5 provides a solution, "application-name":</p>
 
@@ -61,7 +61,7 @@ status messages.</p>
 
 <h4>Safari Mobile</h4>
 
-<p>Since iOS6, apple supports it's own version of "application-name" metadata
+<p>Since iOS6, apple supports its own version of "application-name" metadata
 called "apple-mobile-web-app-title". However, it doesn't use
 "application-name"</p>
 
@@ -130,4 +130,17 @@ way they handle localization falls into two categories:</p>
   The Widgets spec does this by supporting <code>xml:lang</code> and Firefox OS
   incluides a <code>locales</code> property in the manifest.</li>
 </ul>
+
+<p>In both cases, the system gets the application name in the different
+languages and chooses which one to show based on the default language. If a
+user changes the device's default language, all applications with localized
+names in the new language would get the translated names.</p>
+
+<p>This is important to note since web localization is usually handled on the
+server and resources are served in just one language. E.g.: a web app would
+only have one "application-name" meta tag in the language of the
+HTML document. This means the device would only get one translation of the
+application name. If the user changed the default language, the device would
+not be able to translate the app name unless it requested the HTML document
+again in the new language.</p>
 
