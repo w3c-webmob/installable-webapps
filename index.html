@@ -679,12 +679,293 @@ navigator.mozApps.install(pathToManifest);
       </section>
     </section>
     <section data-include="sections/names.html"></section>
-    <h2>
-      Icons
-    </h2>
-    <p>
-      ...
-    </p>
+    <section>
+      <h2>
+        Icons
+      </h2>
+      <p>
+        The <a href="http://whatwg.org/c">Web platform</a> provides two
+        standardized means to associate icons with a Web application: one being
+        the <code>link</code> element with the <code>icon</code> link
+        relationship, and two being the <code>favicon.ico</code> - which is a
+        graphical resource that a developer places at the root of a site, and
+        which user agents will automatically attempt to fetch after a document
+        has loaded.
+      </p>
+      <p>
+        Unfortunately, despite the above two standardized solutions being part
+        of the platform since at least 2008, support for the above is lacking
+        and so various proprietary solutions have emerged and continue to
+        proliferate. This is particularly the case for user agents that support
+        adding applications to the home screen of a device. For example:
+      </p>
+      <dl>
+        <dt>
+          iOS:
+        </dt>
+        <dd>
+          For "add to home screen", does not support either of the two standard
+          solutions. Instead, iOS relies on <code>link</code> elements whose
+          relationship is "<code>apple-touch-icon</code>". It also
+          automatically searches the root of a website for specially named
+          files (e.g., "apple-touch-icon-57x57-precomposed.png").
+        </dd>
+        <dt>
+          Android - Chrome Beta:
+        </dt>
+        <dd>
+          Will use iOS's "<span class=
+          "example highlight"><code>apple-touch-icon</code>" links if it
+          encounters them in a HTML document, but it will not automatically
+          scan the root of a site for those icons.</span>
+        </dd>
+        <dt>
+          Windows 8:
+        </dt>
+        <dd>
+          For "pinned sites", Windows 8 relies on proprietarily-named
+          <code>meta</code> elements described below. <span class=
+          "example highlight">Like with iOS, when a site is pinned, it also
+          automatically scans the root of a site for specifically named files
+          to use as icons.</span>
+        </dd>
+      </dl>
+      <section>
+        <h3>
+          The <code>icon</code> link relationship
+        </h3>
+        <p>
+          To associate an icon with a web application, HTML recommends using a
+          <code>link</code> element whose link relationship is
+          "<code>icon</code>". For example:
+        </p>
+        <pre>
+&lt;link rel="icon" sizes="196x196" href="icon"&gt; 
+</pre>
+        <p>
+          As stated in the [[!HTML] specification:
+        </p>
+        <blockquote>
+          <q>Icons could be auditory icons, visual icons, or other kinds of
+          icons. If multiple icons are provided, the user agent must select the
+          most appropriate icon according to the type, media, and sizes
+          attributes. If there are multiple equally appropriate icons, user
+          agents must use the last one declared in tree order at the time that
+          the user agent collected the list of icons. If the user agent tries
+          to use an icon but that icon is determined, upon closer examination,
+          to in fact be inappropriate (e.g. because it uses an unsupported
+          format), then the user agent must try the next-most-appropriate icon
+          as determined by the attributes.</q>
+        </blockquote>
+        <p>
+          Allowing user agents to discriminate depending on media type, media
+          query, and size potentially provides a complete responsive solution
+          for icons: in that the user agent can use these data points to select
+          the most appropriate icon for a particular context (see the <a href=
+          "http://usecases.responsiveimages.org/">use cases for responsive
+          images</a>).
+        </p>
+        <p>
+          Despite what the [[!HTML]] specification recommends, support for
+          discriminating on media, sizes, and type is limited: Given a set of
+          icons, Gecko-based user agents will use the last known good icon (as
+          per the [[HTML]] spec). However, no attempt is made to discriminate
+          on size (via the link element's <code>sizes</code> attribute).
+          Additionally, Firefox for Android stylizes the icon when a web
+          application is added to the home screen.
+        </p>
+        <p>
+          Support in Mac OS's Safari is also spotty: given multiple icon
+          choices, where the last is unavailable, Safari does not attempt to do
+          any error recovery to find alternative icons. In addition, on iOS,
+          link <code>rel=icon</code> is not used for "add to homescreen" either
+          - only the proprietary "apple-touch-icon" solution is supported
+          (discussed below).
+        </p>
+        <p>
+          Furtunately, &lt;<code>link rel=icon</code>&gt; is fairly well
+          supported on Chrome on both desktop and on iOS and Android, as is
+          support in Windows 8: in the aformentioned user agents, the browser
+          follows the [[HTML]] specification and select appropriate icons based
+          on the sizes attribute. Both browsers also support error handling.
+          Unfortunately, in Chrome Beta, when adding to home screen Chromestill
+          selects the last icon in set, instead of discriminating on size -
+          this can lead to the wrong icon being selected for the available icon
+          size of the home screen.
+        </p>
+      </section>
+      <section>
+        <h3>
+          Favicon
+        </h3>
+        <p>
+          Favicons are small graphical icons commonly used by web browsers to
+          help user's identify a site in the browser's user interface. They
+          typically appear on tabs, in bookmark lists, and when viewing a
+          browser's history. As favicons were a Microsoft creation, the
+          proprietary <a href=
+          "http://en.wikipedia.org/wiki/ICO_%28file_format%29">ICO file
+          format</a> is a common format used for them. However, browsers are
+          not restricted to the .ICO format, and all typical file formats used
+          on the Web are supported (i.e., JPEG, PNG, and GIF).
+        </p>
+        <figure>
+          <img src="images/favicons.png" alt="">
+          <figcaption>
+            Visual favicons of various websites, as shown in the browser tabs
+            of Google Chrome (above) and Firefox on MacOS below.
+          </figcaption>
+        </figure>
+        <p>
+          A <a href="http://en.wikipedia.org/wiki/Favicon">comprehensive
+          history of favicons</a> can be found on Wikipedia, as well as a
+          description of the <a href=
+          "http://en.wikipedia.org/wiki/ICO_%28file_format%29">ICO file
+          format</a>. Relevant to this document is the level of
+          interoperability of favicons in the platform: all user agents support
+          favicons both through using a link relationship and by a developer
+          placing a resource called "favicon.ico" at the root of a web site
+          (i.e., at "/favicon.ico").
+        </p>
+        <figure>
+          <img src="images/favicon.png" width="791" height="394" alt=
+          "Favicon at different sizes">
+          <figcaption>
+            Because of a constraint in the ICO file format, favicons are
+            limited to dimensions of 256 x 256 pixels (though icons are not
+            required to be square). However, they can hold any range of icons
+            below those sizes. This limitations make favicons unsuitable for
+            context that require very large icons, but makes them suitable for
+            most contexts in which icons appear in current OSs.
+          </figcaption>
+        </figure>
+        <p>
+          When an application is added to the home screen of a device, and in
+          the absence of dedicated proprietary icon declarations within a
+          document, all user agents tested except iOS make use of favicons.
+        </p>
+        <p>
+          However, Gecko will only ever use the smallest icon in a set of
+          favicons. Chrome and IE will most of the time select an approprietely
+          sized icon for the context in which the icon is to be displayed.
+        </p>
+      </section>
+      <section>
+        <h3>
+          iOS - Touch icons
+        </h3>
+        <p>
+          In iOS, Apple provides a proprietary declarative solution for
+          including icons in a HTML document - known as "touch icons". Apple
+          iOS has supported touch icons since iOS 1.1.3 and other browsers,
+          such as Chrome on Android, will also make use of these icons as a
+          fallback when they are available.
+        </p>
+        <p>
+          For example:
+        </p>
+        <pre class="example highlight">
+    &lt;link rel="apple-touch-icon" href="apple-touch-icon.png"&gt;
+          
+</pre>
+        <p>
+          On iOS, when web pages doesn't specify a custom touch icon, the OS
+          takes a screenshot of the webstie and creates an icon from it. This
+          is shown below.
+        </p>
+        <figure>
+          <img src="images/ios_icon_screenshot.png" width="320" height="212"
+          alt="adding to homescreen without a touch icon">
+        </figure>
+        <p>
+          When an application is bookmarked, iOS automatically adds some visual
+          effects to an icon so that it integrates more effectivly with the
+          built-in icons on the home screen (as it does with application
+          icons). Specifically, iOS adds:
+        </p>
+        <ul>
+          <li>Rounded corners
+          </li>
+          <li>Drop shadow
+          </li>
+          <li>Reflective shine
+          </li>
+        </ul>
+        <p>
+          As of iOS 2.0, a developer can prevent the addition of these effects
+          by using the precomposed keyword:
+        </p>
+        <pre>
+&lt;link rel="apple-touch-icon-precomposed" href="apple-touch-icon-precomposed.png"&gt;
+</pre>
+        <p>
+          If no icons are specified in the HTML, iOS Safari will search the
+          website’s root directory for icons with the apple-touch-icon or
+          apple-touch-icon-precomposed prefix. For example, if the appropriate
+          icon size for the device is 57 × 57 pixels, iOS searches for
+          filenames in the following order:
+        </p>
+        <ul>
+          <li>apple-touch-icon-57x57-precomposed.png
+          </li>
+          <li>apple-touch-icon-57x57.png
+          </li>
+          <li>apple-touch-icon-precomposed.png
+          </li>
+          <li>apple-touch-icon.png
+          </li>
+        </ul>
+        <p>
+          So, for iOS, it’s not necessary to use HTML to add touch icons to a
+          site, even if one wants to use multiple resolution-specific icons.
+          This helps avoid having to use proprietary <code>&lt;link
+          rel="apple-touch-icon"&gt;</code> elements on every single HTML page.
+          A developer just needs to create different versions of the icon, use
+          the correct file names and place them in the root of the website.
+        </p>
+      </section>
+      <section>
+        <h3>
+          Android
+        </h3>
+        <p>
+          Android has a default system provided icon, and, as already mention,
+          it will fall back to using a favicon if it’s available.
+        </p>
+        <p>
+          Although Android is able to fallback to using the iOS icons, the
+          no-HTML approach doesn’t work on the Android browser (tested in 2.3
+          Gingerbread, 3 Honeycomb, 4.1 Jelly Bean), although there is
+          anectodotal evidence <a href=
+          "https://twitter.com/puntlino/status/312289586736951296">it does work
+          in and 4.2 Jelly Bean’s default browser</a>.
+        </p>
+      </section>
+      <section>
+        <h3>
+          Windows
+        </h3>
+        <p>
+          Web applications intended to be "pinned" rely on meta elements whose
+          name is "<code>msapplication-square{w}x{h}logo</code>", where
+          <var>{w}</var> and <var>{h}</var> are the width and height of the
+          logo.
+        </p>
+        <p>
+          Like iOS, when the proprietary declarations are missing, Windows will
+          also search the root of a website for specifically named files that
+          follow the afformentioned file name pattern. If no suitabile icons
+          are found, Windows will fall back to using a favicon.
+        </p>
+        <p>
+          According to the <a href=
+          "http://blogs.msdn.com/b/ie/archive/2012/06/08/high-quality-visuals-for-pinned-sites-in-windows-8.aspx">
+          <cite>IE Blog</cite></a>, Internet Explorer "only downloads the tile
+          image when the user pins the site to his or her Start screen so sites
+          don’t incur additional bandwidth costs.
+        </p>
+      </section>
+    </section>
     <h2>
       Security and privacy
     </h2>
@@ -921,7 +1202,11 @@ document.addEventListener("click", function (e) {
         Acknowledgements
       </h2>
       <p>
-        ...
+        The bulk of the text in the icons section was adapted from <a href=
+        "http://mathiasbynens.be/">Mathias Bynens</a>' article "<a href=
+        "http://mathiasbynens.be/notes/touch-icons">Everything you always
+        wanted to know about touch icons</a>". With Mathias' permission, the
+        bulk of that text and examples are reproduced in this document.
       </p>
     </section>
   </body>
