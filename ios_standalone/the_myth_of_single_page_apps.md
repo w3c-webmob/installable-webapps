@@ -4,27 +4,23 @@ For this study, we examined 360 web applications that claim to be capable of run
 ## Add to home screen
 Through the use of the "add to home screen" option in Safari, iOS has allowed users to add web apps to the home screen of an iPhone since the release of iOS2.1 back in 2009. Web developers could make use of this capability to put their web apps on an equal footing as native apps on the user's home screen.
 
-<figure>
-![](images/github.png)
-<figcaption>The "Add to home" feature on the iPhone.</figcaption>
-</figure>
+![The "Add to home" feature on the iPhone.](images/github.png)
 
 Over the last 4 years, this capability has seem some uptake in the wild, with iPhone users occasionally encountering a custom pop-up banner that request that they "install" the website they are viewing to the home screen.
 
-<figure>
+
 ![](images/add_to_homescreen.jpg)
-<figcaption>It's not uncommon to find web applications that ask the user to "install this web app on your iPhone: tap <icon> and then **add to homescreen**" on the iPhone.</figcaption>
-</figure>
+<figcaption>It's not uncommon to find web applications that ask the user to "install this web app on your iPhone: tap `<icon>` and then **add to homescreen**" on the iPhone.</figcaption>
+
 
 There are some obvious issues with this pop-up banner approach: not only is it inconsistent across web applications, but it requires developers to both "sniff" for the browser, and then tie a <abbr title="user interface">UI</abbr> component of their own website to that of Safari. 
 
 This is a gamble on the part of the developer, in that Safari can change the look and position of this button at anytime. This problem can be clearly seen above: note there are two kinds of buttons (shown in detail below). If Apple was to relocate or change the look of this button (as it did in iOS7!), it could potentially lead to confusion amongst users.
 
-<figure>
+
 ![](images/bookmark.png)
 <figcaption>On the left, the iOS6 bookmark button. On the right, the iOS7 bookmark button.
 </figcaption>
-</figure>
 
 It also means that if another browser tries to provide this functionality, it will have to put the bookmark button in the same location as Safari. Or the burden is put on developers to create a new popup banner that points to the right spot in the new browser, so users will then know how to add the web application to the home screen. 
 
@@ -38,13 +34,13 @@ We hope this study can help inform the standardization of installable web apps c
 ## Definitions 
 A web application <dfn>claims to be standalone</dfn> if it declares the following in its markup:
 
-```
+```HTML
 <meta name="apple-mobile-web-app-capable" content="yes">
 ```
 
 Or its XHTML equivalent:
 
-```
+```HTML
 <meta name="apple-mobile-web-app-capable" content="yes" />
 ```
 
@@ -85,24 +81,21 @@ The following is the criteria that we assert an application must meet in order t
 
 Firstly, the web application must have an icon that allows it to be distinguished amongst native applications. This is illustrated below, where the Slashdot icon is easy to locate amongst native iOS applications. 
 
-<figure>
+
 ![](images/slashdot_icon.png)
 <figcaption>Slashdot icon amongst native apps.</figcaption>
-</figure>
  
 Secondly, all critical functionality of the application is self contained, without requiring browser chrome to make the application usable. Again, the Slashdot web application running as standalone serves to exemplify such functionality. 
 
-<figure>
-<video src="video/slashdot.mp4"> 
+<video src="video/slashdot.mp4"></video>
 <figcaption>Slashdot is fully functional as an application. When necessary, it provides its own interface elements to enable navigations (e.g., a back button).</figcaption>
-</figure>
+
 
 Thirdly, the web application must be usable on a mobile phone. That is, the application's creator has made an effort to adapt the content of the application to a mobile device — particularly an iPhone. The criteria we used here was: either the app's creator has made an obvious effort to use common conventions found on mobile web applications (e.g., a menu button at the top right hand side of the screen, as shown below); or the content of the web application is legible and UI components are usable without requiring the user to zoom in (achieved by explicitly declaring a `<meta name="viewport" content="width=device-width">`). 
 
-<figure>
 ![](images/mobile_vs_desktop.jpg)
 <figcaption>Nest, on the left, exemplifies a typical "mobile site". The Squawka site on the right exemplifies a desktop site masquerading as a standalone web application. Note how the Squawka site would not be easy to use on a mobile device (requires the user to zoom in, pan around, etc.)</figcaption>
-</figure>
+
 
 ## Methods and limitations
 This study was conducted using the [webdevddata.org](http://webdevddata.org) dataset. The data was collected over an  approx. 8-12 hour period on the 31st of October, 2013. Over those hours, the response page from 78,155 domains were collected (the crawler follows redirects and saves any `HTTP 200 OK` response). The [source for the crawler](https://github.com/Webdevdata/fetcher) is available on GitHub.  
@@ -121,7 +114,7 @@ n1 = 384/(1+384/1097)= 284
 
 So, according to [Cochran]'s correction formula, a minimum of 284 sites would need to be sampled to attain a 95% [confidence level](http://www.stats.gla.ac.uk/steps/glossary/confidence_intervals.html#conflevel) (error of 5%). Because we knew there would likely be issues with the sites (e.g., site is down, etc.), and because of redundancies (discussed below), we followed an oversampling technique and randomly selected 500 sites instead. From the 1097 sites, in order to then derive the random sample, the following ECMAScript was used over the data set.  
 
-```
+```JS
 rand = []; 
 for(var i = 0; i < 500; i++){ 
   var randKey = Math.random() * data.length; 
@@ -136,10 +129,9 @@ rand.join(",\n")
 
 Although we had 500 sites to sample, the reason we ended up with 360 sites was because of time constraints and the redundancies described below. Each site takes about 1 minute to load and check. The sites where manually loaded in Apple's iOS Simulator over a 4 day period between 16-20th of February. The settings for the simulator were "iPhone Retina (4-inch 64Bit)" simulating iOS 7.0. This is shown below.  
 
-<figure>
 ![](images/simulator.png)
 <figcaption>iOS simulator and settings</figcaption>
-</figure>
+
 
 The data collected is available as a CVS file on GitHub.
 
@@ -166,7 +158,7 @@ The data is coded as follows:
  
 The data was then inported into [SQLite3](http://www.sqlite.org/). 
 
-```
+```SQL
 .mode csv
 .import apps.csv webapps
 ```	
@@ -187,10 +179,8 @@ Some sites returned a `HTTP 403 Forbidden` or simply would refused to connect. T
 
 Some sites did not provide enough information to test all three aspects (icons, navigation, mobile). For example, [webcamtoy.com](http://webcamtoy.com) contains an icon, is mobile, but doesn't provide any interaction or navigation: it tells the user to go to the desktop site instead. As such, it was excluded. 
 
-<figure>
 ![](images/webcamtoy.png)
 <figcaption>[webcamtoy.com](http://webcamtoy.com) tells the user to load the desktop site instead.</figcaption>
-</figure>
 
 Some sites declared themselves as standalone through markup, but when loaded in Safari redirect to a mobile version that excludes the required markup. Some examples of sites that do this:
 
@@ -239,34 +229,35 @@ The following sites work initially, but then leave the user stuck at certain pag
 
 
 ### What percentage of web apps claim to be standalone, but are actually just desktop sites? 
-**Answer**:
+**Answer**: 12%.
 
-```
+```SQL
 select count(*) from webapps where icons is "0" and navigates is "0" and mobile is "0";
 43
 ```
-12%
+
 
 ### How many sites are mobile?
-**Answer**:
-```
+**Answer**: 76%.
+
+```SQL
 select count(*) from webapps where mobile is "1";
 274
 ``` 
-76%
+
 
 ### How many sites are desktop sites?
-**Answer**:
-```
+**Answer**: 24%.
+
+```SQL
 select count(*) from webapps where mobile is "0";
 86
 ```
-24%
 
 ### How many sites have a custom icon? 
 **Answer**:56%.
 
-```
+```SQL
 select count(*) from webapps where icons is "1";
 202
 ```
@@ -279,7 +270,7 @@ Even though some sites have an icon, the icon is actually from a purchased theme
 ### How many sites DO NOT have a custom icon?
 **Answer**: 44%. 
 
-```
+```SQL
 select count(*) from webapps where icons is "0";
 158
 ```
@@ -300,7 +291,6 @@ select count(*) from webapps where navigates is "1" and mobile is "0";
 6
 ```
 
-
 ### How many sites are desktop sites that can be navigated and have an icon?
 **Answer**: 1%.
 
@@ -308,7 +298,6 @@ select count(*) from webapps where navigates is "1" and mobile is "0";
 select count(*) from webapps where navigates is "1" and mobile is "0" and icons is "1";
 2
 ```
-
 
 ### How many sites are desktop sites, but include an icon?
 **Answer**: 11%.
@@ -318,8 +307,6 @@ select count(*) from webapps where icons is "1" and mobile is "0";
 38
 ```
 
-
-
 ### How many sites can be navigated, are mobile, but don't declare an icon?
 **Answer**: 3%.
 
@@ -327,7 +314,6 @@ select count(*) from webapps where icons is "1" and mobile is "0";
 select count(*) from webapps where icons is "0" and navigates is "1" and mobile is "1";
 11
 ```
-
 
 ### How many sites claim to be standalone, but have a mistake in their markup that prevents them from working as standalone?
 **Answer**: 5%.
@@ -338,6 +324,7 @@ select count(*) from webapps where navigates is "-1";
 ```
 
 ### How many sites that don't work as standalone inlcude an icon?
+**Answer**: 12.
 
 ```SQL
 select count(*) from webapps where navigates is "-1" and icons is '1';
@@ -349,5 +336,5 @@ select count(*) from webapps where navigates is "-1" and icons is '1';
 <dfn>[Cochran]</dfn> 
 <dd>Cochran, W. G. (1977). Sampling techniques (3rd ed.). New York: John Wiley & Sons.</dd>
 <dt>[Apple]</dt>
-<dd>[Supported Meta Tags]()</dd>
+<dd><a href="https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html">Supported Meta Tags</a></dd>
 </dl>
