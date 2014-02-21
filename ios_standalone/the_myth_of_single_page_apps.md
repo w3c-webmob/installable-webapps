@@ -1,5 +1,5 @@
 # The state of standalone apps on iOS
-For this study, we examined 360 web applications that claim to be capable of running "standalone" in iOS (i.e., the web application asserts that it's usable outside the context of iOS's default browser). We put those claims to the test by manually checking if the apps could, in fact, be used as standalone. To make sure our study is as representative as possible we randomly selected the apps we tested from Alexa's top 78,000 websites. 
+For this study, we examined 360 web applications that claim to be capable of running "standalone" in iOS (i.e., the web application asserts that it's usable outside the context of iOS's default browser). We put those claims to the test by manually checking if the apps could, in fact, be used as standalone. To make sure our study is as representative as possible we randomly selected the apps we tested from Alexa's top 78,000 websites.
 
 ## Add to home screen
 Through the use of the "add to home screen" option in Safari, iOS has allowed users to add web apps to the home screen of an iPhone since the 2009 release of iOS2.1. Web developers could make use of this capability to put their web apps on an equal footing as native apps on the user's home screen.
@@ -12,22 +12,26 @@ Over the last 4 years, this capability has seem some uptake in the wild. iPhone 
 ![Various examples of the add to home screen popup thingy](images/add_to_homescreen.jpg)
 <figcaption>It's not uncommon to find web applications that ask the user to "install this web app on your iPhone: tap `<icon>` and then **add to homescreen**" on the iPhone.</figcaption>
 
-
 There are some obvious issues with this pop-up banner approach: not only is it inconsistent across web applications, but it requires developers to both "sniff" for the browser, and then tie a <abbr title="user interface">UI</abbr> component of their own website to that of Safari. 
 
 This is a gamble on the part of the developer, in that Safari can change the look and position of this button at anytime. This problem can be clearly seen above: note there are two kinds of buttons (shown in detail below). If Apple was to relocate or change the look of this button (as it did in iOS7!), it could potentially lead to confusion amongst users.
 
-
-![](images/bookmark.png)
-<figcaption>On the left, the iOS6 bookmark button. On the right, the iOS7 bookmark button.
+![Bookmark buttons](images/bookmark.png)
+<figcaption>The iOS6 and iOS7 bookmark buttons, on the left and right respectively.
 </figcaption>
 
 It also means that if another browser tries to provide this functionality, it will have to put the bookmark button in the same location as Safari. Or the burden is put on developers to create a new pop-up banner that points to the right spot in the new browser, so users will then know how to add the web application to the home screen. 
 
-Chrome Beta for Android is [experimenting with this capability](https://developers.google.com/chrome/mobile/docs/installtohomescreen), so the above may actually start occurring sooner rather than later.   
+Chrome Beta for Android is also [experimenting with adding web applications to the home screen](https://developers.google.com/chrome/mobile/docs/installtohomescreen), so the above may actually start occurring sooner rather than later.
 
 ## Purpose of this study
-The ability to install a web application to the home screen of a device is currently a hot topic at the W3C (see [manifest spec](http://w3c.github.io/manifest/)). As there is no standardized way to do this in browsers, there are a number of working groups trying to piece together all the bits that would be needed to make installable web apps a standard part of the web platform.    
+The ability to install a web application to the home screen of a device is currently a topic of interest at the W3C (see the [manifest spec](http://w3c.github.io/manifest/)) and in the web development community:
+
+ * [Add to Home Screen Is Not What the Web Needs. Is It?](http://paul.kinlan.me/Add-to-homescreen-not-the-answer/) by 
+ * PPK’s thoughts on [Installable Web Apps](http://www.quirksmode.org/blog/archives/2014/02/installable_web.html)
+ * [Discussion on twitter](https://twitter.com/marcosc/status/436522185641824256).
+
+As there is no standardized way to do this in browsers, there are a number of working groups trying to piece together all the bits that would be needed to make installable web apps a standard part of the web platform. These groups include [WebApps](http://www.w3.org/2008/webapps/), [SysApps](http://www.w3.org/2012/sysapps/), and the [Web and Mobile IG](http://www.w3.org/Mobile/IG/).    
 
 We hope this study can help inform the standardization of installable web apps currently taking place at the W3C. In particular, we hope that by looking at how developers are making use of the dominant proprietary mobile platform that provides this "add to home screen" capability, we can get an insight into the challenges users, developers, and implementers will face if akin technologies are standardized through the W3C and then become a part of the Web platform. 
 
@@ -56,19 +60,36 @@ This study set out to answer the following questions. From the sites that claim 
  * Claim to be standalone, but have a mistake in their markup that prevents them from working as standalone?
 
 ## Key findings
-The number of sites claiming to run as standalone is small but significant; of the 78,155 sites we used as data, they represent 1.4% of the dataset (i.e., 1097 claim to be "`apple-mobile-web-app-capable`").
+The number of sites claiming to run as standalone is insignificant: of all sites we had access to, they represent 1.4% of the dataset (i.e., 1097 out of 78,155 claim to be "`apple-mobile-web-app-capable`"). So, despite this capability being available since 2009, and irrespective of iOS being the dominant mobile platform, few developers bother to create standalone web apps.
 
-Despite their claims to the contrary, what we found was that the majority of web apps **do not** run as standalone (90%, or 324 out of 360). Only a tiny fraction (10%, or 36 out of 360) are able to run as standalone - and 28% of those had significant limitations (described below). There is, in fact, a greater percentage (12%) of desktop sites masquerading as installable web apps than there are actual standalone applications. 
+Despite these 1097 sites claiming they can be used as standalone, what we found was that the majority of web apps (90%, or 324 out of 360) **can not be used as standalone**. Only a tiny fraction (10%, or 36 out of 360) are able to run as standalone - and 28% of those had significant limitations (described below). There is, in fact, a greater percentage (12%) of desktop sites masquerading as installable web apps than there are actual standalone applications. 
 
-Of those 36 apps that were true standalone web apps (i.e., has an icon, is usable on mobile, can be navigated), 10 (28%) of those had issues where they either left the user stranded without being able to "go back" - or worst, suddenly navigated to the desktop version of the site. In other cases, the application mostly worked - but then it was not possible to perform some critical task in the application (e.g., a purchase). In such cases, the application returned the user back into Safari. Others, like nest.com, make a best effort at working at standalone, but throw the user back to the default web browser at random points.  
+Another significant problem is that 85% (307 out of 360) of apps rely on a user's ability to follow hyperlinks. iOS standalone apps don't support following hyperlinks: unless a developer intervenes via JavaScript, the default action is to open links in Safari. The data effectively busts the myth of "single page apps": we found that almost no developers build single page apps in practice.  
+
+Of those 36 apps that were true standalone web apps (i.e., has an icon, is usable on a mobile device, can be navigated), 10 (28%) of those had issues where they either left the user stranded without being able to "go back" - or worst, suddenly navigated to the desktop version of the site. The only option for a user is to drop back to the home screen and open the application again. This causes iOS to load the page that was originally bookmarked. This itself has problems, in that if the user leaves a web app, its state is effectively lost - meaning the application loses its current state. 
+
+In other cases, a web application mostly worked but then it was not possible to perform some critical task within the application (e.g., a purchase). In such cases, the application returned the user back into Safari. Others, like [nest.com](http://nest.com), make a best effort at working as standalone, but throw the user back to the default web browser at random points.  
 
 On the up-side, the majority of web apps (76%) where designed to work on a mobile phone, even if only 13% of those could actually be navigated.
 
 Icon usage, overall, was also fairly healthy - 56% of the web apps we tested included an icon. However, we discovered that at least some web apps included dummy icons from pre-purchased templates - meaning more than one web app included an icon that had nothing to do with the application itself and had the same icon as another site.
 
-Oddly, many web apps (5%, or 19) incorrectly claim that they can run as standalone - but contain a markup error in their HTML that prevents the application from actually doing so! Ironically, of those, 12 out of 19 (63%) even go as far as to include an icon. 
+Oddly, many web apps (5%, or 19) incorrectly claim that they can run as standalone - but contain a markup error in their HTML that prevents the application from actually doing so! Of those, 12 out of 19 (63%) even go as far as to include an icon. These icons are still useful when the app is added to the home screen or bookmarked - just the web apps won't run as standalone.
 
-For more details, see the "other observations" section, as well as the "all the questions" section.
+For more details, see the "[other observations](#other-observations)" and the "[All questions](#all-questions)" section.
+
+## Recommendations to implementers/W3C
+From our findings, this is what we would recommend implementers and the W3C consider when standardizing this technology. 
+
+* It has to be possible for users to follow hyperlinks in standalone applications. Even though iOS doesn't support this functionality, the data clearly shows developers rely on this core capability of the Web.
+* It needs to be possible to open some links in the system default browser: it doesn't make sense to open some links, like ads, within the application.
+* It has to be possible to open a browser window within the application: this is to allow OAuth style authentication (which are blocked from working in iframes).   
+* It needs to be possible for the user to navigate "back". A significant number of a apps, unfortunately, leave users stranded without a way to "go back" in their browsing history. This is sometimes outside the developers control (e.g., an authentication screen at a different domain doesn't support going back). Having some ability to always go back seems critical to make this class of web application usable by the general public.  
+* Do not expect, or encourage, developers to create single page applications. Some will, but they will likely do it wrong. Most everyone won't: it's too hard, unnecessary,  and evidently error prone.
+* Don't expect applications will have good metadata or icons. 
+* Automatically generated metadata and tempting engines will likely be an issue. A lot of sites don't seem to test (or might not even know) that their websites supports running as standalone. 
+* To avoid the issue of UA-specific pop-up banners, a standard way to "install" an applications is needed: either through and API and/or some declarative means.
+* It needs to be possible to be able to jump between web apps and native apps without requiring the developers to constantly save state. That is, leaving an standalone web application should work the same as jumping from one browser tab to another in a desktop browser. 
 
 ## Criteria 
 The following is the criteria that we assert an application must meet in order to be a <dfn>true standalone application</dfn>. 
@@ -80,8 +101,8 @@ Firstly, the web application must have an icon that allows it to be distinguishe
  
 Secondly, all critical functionality of the application is self contained, without requiring browser chrome to make the application usable. Again, the Slashdot web application running as standalone serves to exemplify such functionality. 
 
-<video src="video/slashdot.mp4"></video>
-<figcaption>Slashdot is fully functional as an application. When necessary, it provides its own interface elements to enable navigations (e.g., a back button).</figcaption>
+![](images/slashdot.jpg)
+<figcaption>Slashdot is fully functional as an application. When necessary, it provides its own interface elements to enable navigations (e.g., a back button). A [video](video/slahsdot.mp4) is available.</figcaption>
 
 Thirdly, the web application must be usable on a mobile phone. That is, the application's creator has made an effort to adapt the content of the application to a mobile device — particularly an iPhone. The criteria we used here was: either the app's creator has made an obvious effort to use common conventions of mobile web applications (e.g., a menu button at the top-right hand side of the screen, as shown below); or the content of the web application is legible and UI components are usable without requiring the user to zoom in (achieved by explicitly declaring a `<meta name="viewport" content="width=device-width">`). 
 
@@ -121,11 +142,9 @@ rand.join(",\n")
 Although we had 500 sites to sample, the reason we ended up with 360 sites was because of time constraints and the redundancies described below. Each site takes about 1 minute to load and check. The sites where manually loaded in Apple's iOS Simulator over a 4 day period between 16-20th of February 2014. The settings for the simulator were "iPhone Retina (4-inch 64Bit)" simulating iOS 7.0. This is shown below.  
 
 ![](images/simulator.png)
-<figcaption>iOS simulator and settings</figcaption>
+<figcaption>iOS simulator and settings.</figcaption>
 
-The data collected is available as a [CVS file](https://gist.github.com/marcoscaceres/9041272) on GitHub.
-
-The data is split across four columns:
+The [data]](https://gist.github.com/marcoscaceres/9041272) is split across four columns:
 
 <dfn>
 <dt>site</dt> 
@@ -213,13 +232,20 @@ The following web apps work initially, but then leave the user stuck at certain 
 * wisedock.de 
 * comediansincarsgettingcoffee.com 
 
-
 ### What percentage of web apps claim to be standalone, but are actually just desktop sites? 
 **Answer**: 12%.
 
 ```SQL
-select count(*) from webapps where icons is "0" and navigates is "0" and mobile is "0";
+select select count(*) from webapps where  navigates is "0" or navigates is "-1";
 43
+```
+
+### What percentage of web apps rely on the user being able to follow hyperlinks?
+**Answer:**: 85%.
+
+```SQL
+select count(*) from webapps where  navigates is "0" or navigates is "-1";
+307
 ```
 
 ### How many web apps are mobile?
@@ -239,7 +265,7 @@ select count(*) from webapps where mobile is "0";
 ```
 
 ### How many web apps have a custom icon? 
-**Answer**:56%.
+**Answer**: 56%.
 
 ```SQL
 select count(*) from webapps where icons is "1";
