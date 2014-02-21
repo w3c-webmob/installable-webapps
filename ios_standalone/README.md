@@ -8,7 +8,6 @@ Through the use of the "add to home screen" option in Safari, iOS has allowed us
 
 Over the last 4 years, this capability has seem some uptake in the wild. iPhone users occasionally encounter a custom pop-up banner requesting that they "install" the website they are viewing to the home screen.
 
-
 ![Various examples of the add to home screen popup thingy](images/add_to_homescreen.jpg)
 <figcaption>It's not uncommon to find web applications that ask the user to "install this web app on your iPhone: tap `<icon>` and then **add to homescreen**" on the iPhone.</figcaption>
 
@@ -27,13 +26,12 @@ Chrome Beta for Android is also [experimenting with adding web applications to t
 ## Purpose of this study
 The ability to install a web application to the home screen of a device is currently a topic of interest at the W3C (see the [manifest spec](http://w3c.github.io/manifest/)) and in the web development community:
 
- * [Add to Home Screen Is Not What the Web Needs. Is It?](http://paul.kinlan.me/Add-to-homescreen-not-the-answer/) by 
+ * Paul Kinlan's [Add to Home Screen Is Not What the Web Needs. Is It?](http://paul.kinlan.me/Add-to-homescreen-not-the-answer/) 
  * PPK’s thoughts on [Installable Web Apps](http://www.quirksmode.org/blog/archives/2014/02/installable_web.html)
  * [Discussion on twitter](https://twitter.com/marcosc/status/436522185641824256).
 
 As there is no standardized way to do this in browsers, there are a number of working groups trying to piece together all the bits that would be needed to make installable web apps a standard part of the web platform. These groups include [WebApps](http://www.w3.org/2008/webapps/), [SysApps](http://www.w3.org/2012/sysapps/), and the [Web and Mobile IG](http://www.w3.org/Mobile/IG/).    
-
-We hope this study can help inform the standardization of installable web apps currently taking place at the W3C. In particular, we hope that by looking at how developers are making use of the dominant proprietary mobile platform that provides this "add to home screen" capability, we can get an insight into the challenges users, developers, and implementers will face if akin technologies are standardized through the W3C and then become a part of the Web platform. 
+We hope this study can help inform the standardization of installable web apps currently taking place at the W3C. In particular, we hope that by looking at how developers are making use of the dominant proprietary mobile platform that provides this "add to home screen" capability, we can get an insight into the challenges users, developers, and implementers will face if akin technologies are standardized through the W3C and then become a part of the Web platform.
 
 ## Definitions 
 A web application <dfn>claims to be standalone</dfn> if it declares the following in its markup:
@@ -60,13 +58,13 @@ This study set out to answer the following questions. From the sites that claim 
  * Claim to be standalone, but have a mistake in their markup that prevents them from working as standalone?
 
 ## Key findings
-The number of sites claiming to run as standalone is insignificant: of all sites we had access to, they represent 1.4% of the dataset (i.e., 1097 out of 78,155 claim to be "`apple-mobile-web-app-capable`"). So, despite this capability being available since 2009, and irrespective of iOS being the dominant mobile platform, few developers bother to create standalone web apps.
+The number of sites claiming to run as standalone is insignificant: of all sites we had access to, they represent 1.4% of the dataset (i.e., 1097 out of 78,155 claim to be "`[apple-mobile-web-app-capable](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html#//apple_ref/doc/uid/TP40008193-SW3)`"). So, despite this capability being available since 2009, and irrespective of iOS being the dominant mobile platform, few developers bother to create standalone web apps.
 
 Despite these 1097 sites claiming they can be used as standalone, what we found was that the majority of web apps (90%, or 324 out of 360) **can not be used as standalone**. Only a tiny fraction (10%, or 36 out of 360) are able to run as standalone - and 28% of those had significant limitations (described below). There is, in fact, a greater percentage (12%) of desktop sites masquerading as installable web apps than there are actual standalone applications. 
 
-Another significant problem is that 85% (307 out of 360) of apps rely on a user's ability to follow hyperlinks. iOS standalone apps don't support following hyperlinks: unless a developer intervenes via JavaScript, the default action is to open links in Safari. The data effectively busts the myth of "single page apps": we found that almost no developers build single page apps in practice.  
+Another significant problem is that 85% (307 out of 360) of apps rely on a user's ability to follow hyperlinks. iOS standalone apps don't support following hyperlinks: unless a developer intervenes via JavaScript, the default action is to open links in Safari. The data effectively busts the myth of "single page apps": we found that almost no developers build single page apps in practice for this class of application.  
 
-Of those 36 apps that were true standalone web apps (i.e., has an icon, is usable on a mobile device, can be navigated), 10 (28%) of those had issues where they either left the user stranded without being able to "go back" - or worst, suddenly navigated to the desktop version of the site. The only option for a user is to drop back to the home screen and open the application again. This causes iOS to load the page that was originally bookmarked. This itself has problems, in that if the user leaves a web app, its state is effectively lost - meaning the application loses its current state. 
+Of those 36 apps that were [true standalone web apps](#true-app) (i.e., has an icon, is usable on a mobile device, can be navigated), 10 (28%) of those had issues where they either left the user stranded without being able to "go back" - or worst, suddenly navigated to the desktop version of the site. The only option for a user is to drop back to the home screen and open the application again. This causes iOS to load the page that was originally bookmarked. This itself has problems, in that if the user leaves a web app, its state is effectively lost - meaning the application can lose data. 
 
 In other cases, a web application mostly worked but then it was not possible to perform some critical task within the application (e.g., a purchase). In such cases, the application returned the user back into Safari. Others, like [nest.com](http://nest.com), make a best effort at working as standalone, but throw the user back to the default web browser at random points.  
 
@@ -76,10 +74,10 @@ Icon usage, overall, was also fairly healthy - 56% of the web apps we tested inc
 
 Oddly, many web apps (5%, or 19) incorrectly claim that they can run as standalone - but contain a markup error in their HTML that prevents the application from actually doing so! Of those, 12 out of 19 (63%) even go as far as to include an icon. These icons are still useful when the app is added to the home screen or bookmarked - just the web apps won't run as standalone.
 
-For more details, see the "[other observations](#other-observations)" and the "[All questions](#all-questions)" section.
+For more details, see the "[Other observations](#other-observations)" and the "[all questions](#all-questions)" section.
 
 ## Recommendations to implementers/W3C
-From our findings, this is what we would recommend implementers and the W3C consider when standardizing this technology. 
+From our findings, this is what we would recommend implementers and the W3C consider when standardizing this technology.
 
 * It has to be possible for users to follow hyperlinks in standalone applications. Even though iOS doesn't support this functionality, the data clearly shows developers rely on this core capability of the Web.
 * It needs to be possible to open some links in the system default browser: it doesn't make sense to open some links, like ads, within the application.
@@ -87,12 +85,12 @@ From our findings, this is what we would recommend implementers and the W3C cons
 * It needs to be possible for the user to navigate "back". A significant number of a apps, unfortunately, leave users stranded without a way to "go back" in their browsing history. This is sometimes outside the developers control (e.g., an authentication screen at a different domain doesn't support going back). Having some ability to always go back seems critical to make this class of web application usable by the general public.  
 * Do not expect, or encourage, developers to create single page applications. Some will, but they will likely do it wrong. Most everyone won't: it's too hard, unnecessary,  and evidently error prone.
 * Don't expect applications will have good metadata or icons. 
-* Automatically generated metadata and tempting engines will likely be an issue. A lot of sites don't seem to test (or might not even know) that their websites supports running as standalone. 
-* To avoid the issue of UA-specific pop-up banners, a standard way to "install" an applications is needed: either through and API and/or some declarative means.
-* It needs to be possible to be able to jump between web apps and native apps without requiring the developers to constantly save state. That is, leaving an standalone web application should work the same as jumping from one browser tab to another in a desktop browser. 
+* Automatically generated metadata and template engines will likely be an issue. A lot of sites don't seem to test (or might not even know) that their websites supports running as standalone. 
+* To avoid the issue of UA-specific pop-up banners, a standard way to "install" an application is needed: either through and API and/or some declarative means.
+* It needs to be possible to be able to jump between web apps and native apps without requiring the developers to constantly save state. That is, leaving a standalone web application should work the same as jumping from one browser tab to another in a desktop browser. 
 
 ## Criteria 
-The following is the criteria that we assert an application must meet in order to be a <dfn>true standalone application</dfn>. 
+The following is the criteria that we assert an application must meet in order to be a <dfn id="true-app">true standalone application</dfn>. 
 
 Firstly, the web application must have an icon that allows it to be distinguished amongst native applications. This is illustrated below, where the Slashdot icon is easy to locate amongst native iOS applications. 
 
@@ -118,13 +116,13 @@ The dataset was filtered for files that matched the CSS selector `meta[name="app
 
 The list of the resulting 1097 matching files are available as a [gist on Github](https://gist.github.com/ernesto-jimenez/9073492). Statistically speaking, we consider this our [population](http://en.wikipedia.org/wiki/Statistical_population) - i.e., our "set of individuals or objects of interest" as defined on Wikipedia.
 
-To define our sample size, we applied [Cochran]'s correction formula for populations sizes less than 50,000: 
+To define our sample size, we applied [[Cochran](#cochran)]'s correction formula for populations sizes less than 50,000: 
 
 ```
 n1 = 384/(1+384/1097)= 284
 ```
 
-So, according to [Cochran]'s correction formula, a minimum of 284 sites would need to be sampled to attain a 95% [confidence level](http://www.stats.gla.ac.uk/steps/glossary/confidence_intervals.html#conflevel) (error of 5%). Because we knew there would likely be issues with the sites (e.g., site is down, etc.), and because of redundancies (discussed below), we followed an oversampling technique and randomly selected 500 sites instead. From the 1097 sites, in order to then derive the random sample, the following ECMAScript was used over the dataset.  
+So, according to [[Cochran](#cochran)]'s correction formula, a minimum of 284 sites would need to be sampled to attain a 95% [confidence level](http://www.stats.gla.ac.uk/steps/glossary/confidence_intervals.html#conflevel) (error of 5%). Because we knew there would likely be issues with the sites (e.g., site is down, etc.), and because of redundancies (discussed below), we followed an oversampling technique and randomly selected 500 sites instead. From the 1097 sites, in order to then derive the random sample, the following ECMAScript was used over the dataset.  
 
 ```JS
 rand = []; 
@@ -141,12 +139,12 @@ rand.join(",\n")
 
 Although we had 500 sites to sample, the reason we ended up with 360 sites was because of time constraints and the redundancies described below. Each site takes about 1 minute to load and check. The sites where manually loaded in Apple's iOS Simulator over a 4 day period between 16-20th of February 2014. The settings for the simulator were "iPhone Retina (4-inch 64Bit)" simulating iOS 7.0. This is shown below.  
 
-![](images/simulator.png)
+![](images/simulator.jpg)
 <figcaption>iOS simulator and settings.</figcaption>
 
-The [data]](https://gist.github.com/marcoscaceres/9041272) is split across four columns:
+The [data](https://gist.github.com/marcoscaceres/9041272) is split across four columns:
 
-<dfn>
+<dl>
 <dt>site</dt> 
 <dd>The domian of the site being examined.</dd> 
 <dt>icon</dt>
@@ -155,7 +153,7 @@ The [data]](https://gist.github.com/marcoscaceres/9041272) is split across four 
 <dd>Is the site a mobile site.</dd>
 <dt>navigates</dt>
 <dd>Once launched, is it possible to navigate around the application?</dd>
-</dfn>
+</dl>
 
 The data is coded as follows:
 
@@ -172,13 +170,13 @@ The data was then imported into [SQLite3](http://www.sqlite.org/).
 .import apps.csv webapps
 ```	
 
-As all we needed was count and percentages, SQL queries were then used to perform the statistics. See the All Questions section for the actual SQL used.  
+As all we needed was count and percentages, SQL queries were then used to perform the statistics. See the "[All questions](#all-questions)" section for the actual SQL used.  
 
 ### Redundancies and issues in the data
 Although all the domains in the dataset are unique, some domains return the same data as other domains. For example:
 
 * [sc.com](http://sc.com) is the same as [standardchartered.com.sg](http://standardchartered.com.sg)
-* Others redundant sites included, pricegrabber.co.uk, katproxy.com, pscufs.com, rezultati.com, suite101.net, and meusresultados.com. 
+* Others redundant sites included, [pricegrabber.co.uk](http://pricegrabber.co.uk), [katproxy.com](http://katproxy.com), [pscufs.com](http://pscufs.com), [rezultati.com](http://rezultati.com), [suite101.net](http://suite101.net), and [meusresultados.com](http://meusresultados.com). 
 
 Some sites returned a `HTTP 403 Forbidden` or simply would refused to connect. This happened even though they worked fine when the original dataset was collected in October 2013: 
 
@@ -188,7 +186,7 @@ Some sites returned a `HTTP 403 Forbidden` or simply would refused to connect. T
 
 Some sites did not provide enough information to test all three aspects (icons, navigation, mobile). For example, [webcamtoy.com](http://webcamtoy.com) contains an icon, is mobile, but doesn't provide any interaction or navigation: it tells the user to go to the desktop site instead. As such, it was excluded. 
 
-![](images/webcamtoy.png)
+![](images/webcamtoy.jpg)
 <figcaption>[webcamtoy.com](http://webcamtoy.com) tells the user to load the desktop site instead.</figcaption>
 
 Some sites declared themselves as standalone through markup, but when loaded in Safari redirect to a mobile version that excludes the required markup. Some examples of sites that do this:
@@ -206,45 +204,51 @@ This section lists the questions that we could ask from the data we collected; a
 
 ### What percentage of web apps are truly able to function as standalone?
 
-**Answer**: 10%. See the definition of a truly standalone application. See also the caveats below. 
+**Answer**: 10%. See the definition of a [true standalone web application](#true-app). See also the caveats below. 
 
 ```
-select count(*) from webapps where icons is "1" and navigates is "1" and mobile is "1";
+select count(*) 
+from webapps 
+where icons is "1" and navigates is "1" and mobile is "1";
 36
 ```
 
 Some applications allow navigation, but then unexpectedly navigate to the desktop version of the web app:
 
-* radardedescontos.com.br
-* soluto.com
-* kingcounty.gov 
+* [radardedescontos.com.br](http://radardedescontos.com.br)
+* [soluto.com](http://soluto.com)
+* [kingcounty.gov](http://kingcounty.gov)
 
 Some web apps provide simple interactions like searching. However, they throw the user back into Safari for any critical functionality (e.g., making a purchase):
 
-* nest.com
-* songkick.com
-* suite101.fr 
-* urbita.com
+* [nest.com](http://nest.com)
+* [songkick.com](http://songkick.com)
+* [suite101.fr](http://suite101.fr)
+* [urbita.com](http://urbita.com)
 
 The following web apps work initially, but then leave the user stuck at certain pages. As there is no back button, there is not much the user can do but to quit the app:
 
-* sumall.com
-* wisedock.de 
-* comediansincarsgettingcoffee.com 
+* [sumall.com](http://sumall.com)
+* [wisedock.de](http://wisedock.de)
+* [comediansincarsgettingcoffee.com](http://comediansincarsgettingcoffee.com)
 
 ### What percentage of web apps claim to be standalone, but are actually just desktop sites? 
 **Answer**: 12%.
 
 ```SQL
-select select count(*) from webapps where  navigates is "0" or navigates is "-1";
+select select count(*) 
+from webapps where
+navigates is "0" or navigates is "-1";
 43
 ```
 
 ### What percentage of web apps rely on the user being able to follow hyperlinks?
-**Answer:**: 85%.
+**Answer**: 85%.
 
 ```SQL
-select count(*) from webapps where  navigates is "0" or navigates is "-1";
+select count(*)
+from webapps 
+where navigates is "0" or navigates is "-1";
 307
 ```
 
@@ -252,7 +256,9 @@ select count(*) from webapps where  navigates is "0" or navigates is "-1";
 **Answer**: 76%.
 
 ```SQL
-select count(*) from webapps where mobile is "1";
+select count(*)
+from webapps
+where mobile is "1";
 274
 ``` 
 
@@ -260,7 +266,9 @@ select count(*) from webapps where mobile is "1";
 **Answer**: 24%.
 
 ```SQL
-select count(*) from webapps where mobile is "0";
+select count(*)
+from webapps
+where mobile is "0";
 86
 ```
 
@@ -268,20 +276,24 @@ select count(*) from webapps where mobile is "0";
 **Answer**: 56%.
 
 ```SQL
-select count(*) from webapps where icons is "1";
+select count(*)
+from webapps
+where icons is "1";
 202
 ```
 
 Even though some web apps have an icon, the icon is actually from a purchased theme (my theme shop). Hence the icon doesn't match the application. This is indicative that developers don't check their sites or templating will cause issues in the future for installable web apps. 
 
- * pixelbell.com
- * smashfreakz.com
+ * [pixelbell.com](http://pixelbell.com)
+ * [smashfreakz.com](http://smashfreakz.com)
 
 ### How many web apps DO NOT have a custom icon?
 **Answer**: 44%. 
 
 ```SQL
-select count(*) from webapps where icons is "0";
+select count(*) 
+from webapps
+where icons is "0";
 158
 ```
 
@@ -289,7 +301,9 @@ select count(*) from webapps where icons is "0";
 **Answer**: 15%.
 
 ```SQL
-select count(*) from webapps where navigates is "1";
+select count(*) 
+from webapps 
+where navigates is "1";
 53
 ```
 
@@ -297,7 +311,9 @@ select count(*) from webapps where navigates is "1";
 **Answer**: 2%.
 
 ```SQL
-select count(*) from webapps where navigates is "1" and mobile is "0";
+select count(*)
+from webapps 
+where navigates is "1" and mobile is "0";
 6
 ```
 
@@ -305,7 +321,9 @@ select count(*) from webapps where navigates is "1" and mobile is "0";
 **Answer**: 1%.
 
 ```SQL
-select count(*) from webapps where navigates is "1" and mobile is "0" and icons is "1";
+select count(*)
+from webapps 
+where navigates is "1" and mobile is "0" and icons is "1";
 2
 ```
 
@@ -313,7 +331,9 @@ select count(*) from webapps where navigates is "1" and mobile is "0" and icons 
 **Answer**: 11%.
 
 ```SQL
-select count(*) from webapps where icons is "1" and mobile is "0";
+select count(*) 
+from webapps 
+where icons is "1" and mobile is "0";
 38
 ```
 
@@ -321,7 +341,9 @@ select count(*) from webapps where icons is "1" and mobile is "0";
 **Answer**: 3%.
 
 ```SQL
-select count(*) from webapps where icons is "0" and navigates is "1" and mobile is "1";
+select count(*) 
+from webapps 
+where icons is "0" and navigates is "1" and mobile is "1";
 11
 ```
 
@@ -329,22 +351,27 @@ select count(*) from webapps where icons is "0" and navigates is "1" and mobile 
 **Answer**: 5%.
 
 ```SQL
-select count(*) from webapps where navigates is "-1";
+select count(*) 
+from webapps 
+where navigates is "-1";
 19
 ```
 
-### How many web apps that don't work as standalone include an icon?
+### How many web apps don't work as standalone and include an icon?
 **Answer**: 12.
 
 ```SQL
-select count(*) from webapps where navigates is "-1" and icons is '1';
+select count(*) 
+from webapps 
+where navigates is "-1" and icons is '1';
 12
 ```
 
+# Acknowledgements
+Huge thanks to Ernesto Jiménez for writting the WebDevData tools that make processing this data possible and for providing the data about "apple-mobile-web-app-capable". 
+
 # References
 <dl>
-<dfn>[Cochran]</dfn> 
+<dt><dfn id="Cochran">[Cochran]</dfn></dt> 
 <dd>Cochran, W. G. (1977). Sampling techniques (3rd ed.). New York: John Wiley & Sons.</dd>
-<dt>[Apple]</dt>
-<dd><a href="https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html">Supported Meta Tags</a></dd>
 </dl>
