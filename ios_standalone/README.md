@@ -58,7 +58,7 @@ This study set out to answer the following questions. From the sites that claim 
  * Claim to be standalone, but have a mistake in their markup that prevents them from working as standalone?
 
 ## Key findings
-The number of sites claiming to run as standalone is insignificant: of all sites we had access to, they represent 1.4% of the dataset (i.e., 1097 out of 78,155 claim to be "`[apple-mobile-web-app-capable](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html#//apple_ref/doc/uid/TP40008193-SW3)`"). So, despite this capability being available since 2009, and irrespective of iOS being the dominant mobile platform, few developers bother to create standalone web apps.
+The number of sites claiming to run as standalone is insignificant: of all sites we had access to, they represent 1.4% of the dataset (i.e., 1097 out of 78,155 claim to be [`apple-mobile-web-app-capable`](https://developer.apple.com/library/safari/documentation/AppleApplications/Reference/SafariHTMLRef/Articles/MetaTags.html#//apple_ref/doc/uid/TP40008193-SW3). So, despite this capability being available since 2009, and irrespective of iOS being the dominant mobile platform, few developers bother to create standalone web apps.
 
 Despite these 1097 sites claiming they can be used as standalone, what we found was that the majority of web apps (90%, or 324 out of 360) **can not be used as standalone**. Only a tiny fraction (10%, or 36 out of 360) are able to run as standalone - and 28% of those had significant limitations (described below). There is, in fact, a greater percentage (12%) of desktop sites masquerading as installable web apps than there are actual standalone applications. 
 
