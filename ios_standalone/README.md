@@ -100,7 +100,7 @@ Firstly, the web application must have an icon that allows it to be distinguishe
 Secondly, all critical functionality of the application is self contained, without requiring browser chrome to make the application usable. Again, the Slashdot web application running as standalone serves to exemplify such functionality. 
 
 ![](images/slashdot.jpg)
-<figcaption>Slashdot is fully functional as an application. When necessary, it provides its own interface elements to enable navigations (e.g., a back button). A [video](video/slahsdot.mp4) is available.</figcaption>
+<figcaption>Slashdot is fully functional as an application. When necessary, it provides its own interface elements to enable navigations (e.g., a back button). A [video](video/slashdot.mp4) is available.</figcaption>
 
 Thirdly, the web application must be usable on a mobile phone. That is, the application's creator has made an effort to adapt the content of the application to a mobile device — particularly an iPhone. The criteria we used here was: either the app's creator has made an obvious effort to use common conventions of mobile web applications (e.g., a menu button at the top-right hand side of the screen, as shown below); or the content of the web application is legible and UI components are usable without requiring the user to zoom in (achieved by explicitly declaring a `<meta name="viewport" content="width=device-width">`). 
 
