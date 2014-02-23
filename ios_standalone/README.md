@@ -6,7 +6,7 @@ Through the use of the "add to home screen" option in Safari, iOS has allowed us
 
 ![The "Add to home" feature on the iPhone.](images/github.png)
 
-Over the last 4 years, this capability has seem some uptake in the wild. iPhone users occasionally encounter a custom pop-up banner requesting that they "install" the website they are viewing to the home screen.
+Over the last 4 years, this capability has seem some uptake in the wild. Through JavaScript libraries, [such as the one created by Matteo Spinelli](http://cubiq.org/add-to-home-screen), iPhone users occasionally encounter a custom pop-up banner suggesting that they "install" the website they are viewing to the home screen.
 
 ![Various examples of the add to home screen popup thingy](images/add_to_homescreen.jpg)
 <figcaption>It's not uncommon to find web applications that ask the user to "install this web app on your iPhone: tap `<icon>` and then **add to homescreen**" on the iPhone.</figcaption>
