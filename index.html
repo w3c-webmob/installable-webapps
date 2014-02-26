@@ -401,8 +401,9 @@
         web application and a native application. This has not happened on the
         OS level alone: progress on the web platform, such as the ability to
         make content available off-line, performance gains through hardware
-        acceleration, and <a href="http://www.html5rocks.com/en/tutorials/forms/html5forms/">integration with
-        native form controls</a>, has assisted in diminishing these
+        acceleration, and <a href=
+        "http://www.html5rocks.com/en/tutorials/forms/html5forms/">integration
+        with native form controls</a>, has assisted in diminishing these
         differences.
       </p>
       <p>
@@ -965,36 +966,38 @@ navigator.mozApps.install(pathToManifest);
         </p>
       </section>
     </section>
-    <h2>
-      Security and privacy
-    </h2>
-    <p>
-      The act of adding an application to the home screen serves as a cue to
-      alter the security policy of an application. For example, in iOS, and
-      application that has been added to the home screen will no longer share
-      cookies, localStorage, IDB, etc. with the Safari Web browser. The OS will
-      also reset all its API permissions, so, for example, any previously
-      granted permission to access location services that occurred in the
-      browser are forgotten once the application is added to the homescreen -
-      the end-user will need to re-enable such permission again after the
-      application is launched from the homescreen.
-    </p>
-    <p>
-      Furthermore, by adding the application to the home screen, the
-      application gains its own independent privacy settings in iOS's privacy
-      menus. This is shown in the figure below.
-    </p>
-    <figure>
-      <img src="images/ios_privacy.png" alt=
-      "iOS's privacy for location settings">
-      <figcaption>
-        iOS privacy settings for location services. Shown is Forecast, which is
-        an installed web application as well as the Safari Web browser. Here,
-        users can disable the . More importantly, disabling location services
-        for the Web browser does not affect the ability of Forecast to access
-        location services.
-      </figcaption>
-    </figure>
+    <section>
+      <h2>
+        Security and privacy
+      </h2>
+      <p>
+        The act of adding an application to the home screen serves as a cue to
+        alter the security policy of an application. For example, in iOS, and
+        application that has been added to the home screen will no longer share
+        cookies, localStorage, IDB, etc. with the Safari Web browser. The OS
+        will also reset all its API permissions, so, for example, any
+        previously granted permission to access location services that occurred
+        in the browser are forgotten once the application is added to the
+        homescreen - the end-user will need to re-enable such permission again
+        after the application is launched from the homescreen.
+      </p>
+      <p>
+        Furthermore, by adding the application to the home screen, the
+        application gains its own independent privacy settings in iOS's privacy
+        menus. This is shown in the figure below.
+      </p>
+      <figure>
+        <img src="images/ios_privacy.png" alt=
+        "iOS's privacy for location settings">
+        <figcaption>
+          iOS privacy settings for location services. Shown is Forecast, which
+          is an installed web application as well as the Safari Web browser.
+          Here, users can disable the . More importantly, disabling location
+          services for the Web browser does not affect the ability of Forecast
+          to access location services.
+        </figcaption>
+      </figure>
+    </section>
     <section>
       <h2>
         Start page
