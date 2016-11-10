@@ -62,7 +62,7 @@ var respecConfig = {
   // !!!! IMPORTANT !!!! MAKE THE ABOVE BLINK IN YOUR HEAD,
   issueBase: 'https://github.com/w3c-webmob/installable-webapps/issues',
   otherLinks: [{
-    key: 'Repositorty',
+    key: 'Repository',
     data: [
 				{
 					href: 'https://github.com/w3c-webmob/installable-webapps'
